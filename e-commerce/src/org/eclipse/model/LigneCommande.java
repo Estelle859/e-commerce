@@ -1,34 +1,32 @@
 package org.eclipse.model;
-
-import org.eclipse.model.Produit;
-
 public class LigneCommande {
 	
-	private Long id;
-	private int quantite;
+	private int id;
+	private int quantite;	
 	private Produit produit;
-	//private Commande commande;
+	
 	private float prix;
 	
 	public LigneCommande() {
 		super();
 	}
+
 	public LigneCommande(Produit p, int qte) {
 		this.produit = p;
 		this.quantite = qte;
 				
 	}
-	public LigneCommande(Long id, int quantite, Produit produit, float prix) {	
+	public LigneCommande(int id, int quantite, Produit produit, float prix) {	
 		this.id = id;
 		this.quantite = quantite;
 		this.produit = produit;
 		this.prix = prix;
 	}
 	
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public int getQuantite() {
@@ -43,12 +41,7 @@ public class LigneCommande {
 	public void setProduit(Produit produit) {
 		this.produit = produit;
 	}
-//	public Commande getCommande() {
-//		return commande;
-//	}
-//	public void setCommande(Commande commande) {
-//		this.commande = commande;
-//	}
+
 	public float getPrix() {			
 		return prix;
 	}

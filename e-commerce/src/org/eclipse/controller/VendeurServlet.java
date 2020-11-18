@@ -7,13 +7,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/vend")
+import org.eclipse.service.ProduitService;
+
+
+@WebServlet("/vendeur")
 public class VendeurServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private ProduitService produitService = new ProduitService();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		System.out.println("VENDEUR SERVLET:: GET ");
+		request.setAttribute("produits", produitService.getAllProducts());
+		getServletContext().getRequestDispatcher("/WEB-INF/vendeur/vendeur.jsp").forward(request, response);
 	}
 
 	

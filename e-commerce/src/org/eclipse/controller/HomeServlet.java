@@ -24,15 +24,19 @@ public class HomeServlet extends HttpServlet {
             throws ServletException, IOException {
         System.out.println("HomeController :: GET");         
         request.setAttribute("produits", ps.getAllProducts());
-    	getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);    
+    	getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);    
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("HomeController :: POST");            
-        request.setAttribute("produits", ps.getAllProducts()); 
-        request.getRequestDispatcher("/WEB-INF/produit/produit.jsp").forward(request, response);            
+        System.out.println("HomeController :: POST");
+        int id = Integer.parseInt(request.getParameter("id"));
+        Produit article = ps.findByIdProduct(id);
+        request.setAttribute("article", article); 
+        getServletContext().getRequestDispatcher("/WEB-INF/panier/article.jsp").forward(request, response);    
+       // request.getRequestDispatcher("/WEB-INF/produit/produit.jsp").forward(request, response);            
         
-    }
+    } 
 }
+ 

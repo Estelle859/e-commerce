@@ -10,13 +10,13 @@ public class Produit {
 	private int quantite;
 	private String urlImage;
 	private boolean selectionne;
-	private String categorie;
+	private Categorie categorie;
 	
 	public Produit() {
-		
+		categorie =  new Categorie();
 	}
 	public Produit(int i, String designation, float prixUnitaire, int quantite, String urlImage, boolean selectionne,
-			String categorie) {		
+			Categorie categorie) {		
 		this.id = i;
 		this.designation = designation;
 		this.prixUnitaire = prixUnitaire;
@@ -62,10 +62,10 @@ public class Produit {
 	public void setSelectionne(boolean selectionne) {
 		this.selectionne = selectionne;
 	}
-	public String getCategorie() {
+	public Categorie getCategorie() {
 		return categorie;
 	}
-	public void setCategorie(String categorie) {
+	public void setCategorie(Categorie categorie) {
 		this.categorie = categorie;
 	}
 	@Override

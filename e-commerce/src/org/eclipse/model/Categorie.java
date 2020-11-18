@@ -4,29 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Categorie {
-	private Long id;
+	private int idCate;
 	private String nomCategorie;
 	private String description;
-	private String urlImage;	
+	//private String urlImage;	
 	//private List<Produit> produits = new ArrayList<Produit>();
 	
 	public Categorie() {
-		super();
+	
 	}
-	public Categorie(Long id, String nomCategorie, String description, String urlImage) {
+	public Categorie(int id, String nomCategorie, String description) {
 		super();
-		this.id = id;
+		this.idCate = id;
 		this.nomCategorie = nomCategorie;
 		this.description = description;
-		this.urlImage = urlImage;
+		//this.urlImage = urlImage;
 		//this.produits = produits;
 	}
 	
-	public Long getId() {
-		return id;
+
+	public int getIdCate() {
+		return idCate;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setIdCate(int idCate) {
+		this.idCate = idCate;
 	}
 	public String getNomCategorie() {
 		return nomCategorie;
@@ -40,12 +41,12 @@ public class Categorie {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getUrlImage() {
-		return urlImage;
-	}
-	public void setUrlImage(String urlImage) {
-		this.urlImage = urlImage;
-	}
+//	public String getUrlImage() {
+//		return urlImage;
+//	}
+//	public void setUrlImage(String urlImage) {
+//		this.urlImage = urlImage;
+//	}
 //	public List<Produit> getProduits() {
 //		return produits;
 //	}
@@ -54,8 +55,8 @@ public class Categorie {
 //	}
 	@Override
 	public String toString() {
-		return "Categorie [id=" + id + ", nomCategorie=" + nomCategorie + ", description=" + description + ", urlImage="
-				+ urlImage +  "]";
+		return "Categorie [id=" + idCate + ", nomCategorie=" + nomCategorie + ", description=" + description +  "]";
+				  
 	}
 	
 
