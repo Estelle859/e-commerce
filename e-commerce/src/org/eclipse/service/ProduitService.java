@@ -21,19 +21,13 @@ public class ProduitService {
 		 produits.add(new Produit(4,"Samsung Galaxy S20 FE 5G",599,6,"https://images-na.ssl-images-amazon.com/images/I/712PXMEDp4L._AC_SL1500_.jpg",true,new Categorie(4,"categorie","description4")));	
 
 	}
-	public void saveProduct(Produit produit) {	
+	public void save(Produit produit) {	
 		produits.add(produit);		
 	}	
-	public void removeProduct(Produit produit) {
+	public void removeByProduct(Produit produit) {
 		produits.remove(produit);
 	}
-//	public void removeById(int id) {
-//		for(Produit produit : produits) {
-//			if(produit.getId()==id) {
-//				produits.remove(produit);
-//			}			
-//		}		
-//	}
+
 	public void removeById(int id) {
 		for (int i = 0; i < produits.size(); i++) {
 			if (produits.get(i).getId() == id) {
@@ -42,7 +36,7 @@ public class ProduitService {
 		}
 		
 	}
-	public void updateProduct(Produit produit) {	
+	public void update(Produit produit) {	
 		System.out.println("product id " + produit.getId());
 		for (int i = 0; i < produits.size(); i++) {
 			if (produits.get(i).getId() ==  produit.getId()) {
@@ -51,41 +45,36 @@ public class ProduitService {
 				Categorie categorie = produit.getCategorie();
 				produits.get(i).getCategorie().setIdCate(categorie.getIdCate());
 				produits.get(i).getCategorie().setNomCategorie(categorie.getNomCategorie());
-				produits.get(i).getCategorie().setDescription(categorie.getDescription());
-				
-				produits.get(i).setQuantite(produit.getQuantite());
+				produits.get(i).getCategorie().setDescription(categorie.getDescription());				
+				produits.get(i).setQuantiteStock(produit.getQuantiteStock());
 				produits.get(i).setPrixUnitaire(produit.getPrixUnitaire());
 				produits.get(i).setUrlImage(produit.getUrlImage());	
 				
 			}
 		}
 		for(Produit p : produits) {		
-			if(p.getId()==produit.getId()) {				
-//				p.setDesignation(produit.getDesignation());
-//				p.setQuantite(produit.getQuantite());
-//				p.setPrixUnitaire(produit.getPrixUnitaire());
-//				p.setUrlImage(produit.getUrlImage());				
-			
-				
+			if(p.getId()==produit.getId()) {			
 				p = produit;
 			}
 		}		
-	}	
+	}
+	
 	public List<Produit> getAllProducts() {
         return produits;
     }
+	
 	public void  setAllProducts(List<Produit> listeproduits) {
         produits = listeproduits;
     }
-//	public List<Produit> getAllProductsByCategorie(Long idCategorie) {
-//		  ArrayList<Produit> produitsparCategorie = new ArrayList<>();	
-//		for(Produit p : produits) {
-//			if(idCategorie==p.getCategorie().getId()) {
-//				produitsparCategorie.add(p);
-//			}
-//		}
-//        return produitsparCategorie;
-//    }
+	public List<Produit> getAllProductsByCategorie(Long idCategorie) {
+		  ArrayList<Produit> produitsparCategorie = new ArrayList<>();	
+		for(Produit p : produits) {
+			if(idCategorie==p.getCategorie().getIdCate()) {
+				produitsparCategorie.add(p);
+			}
+		}
+        return produitsparCategorie;
+    }
 	
 	public Produit findByIdProduct(int num) {
 		for(Produit p : produits) {
@@ -103,7 +92,7 @@ public class ProduitService {
 	public List<Produit> findByQuantiteEnStock() {
         List<Produit> disponibles = new ArrayList<>();
         for (Produit produit : produits) {
-            if (produit.getQuantite() > 0) {
+            if (produit.getQuantiteStock() > 0) {
                 disponibles.add(produit);
             }
         }
@@ -118,7 +107,6 @@ public class ProduitService {
         }
 		return sellectionnes;
 		
-	}
-	
+	}	
 
 }

@@ -1,4 +1,13 @@
-function myFunction() {
-  var x = $("input[type='number']").InputSpinner();
-  document.getElementById("demo").innerHTML = x;
-}
+//$("input[type='number']").InputSpinner();
+
+var myVar = document.getElementById('num').innerText;
+
+$.ajax({
+    url: 'panier',
+    data: {
+        myPostVar: myVar
+    },
+    type: 'GET'
+});
+
+

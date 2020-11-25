@@ -22,27 +22,83 @@
 <script src="./src/bootstrap-input-spinner.js"></script>
 
 
-<title>Page de Panier</title>
+<title>Panier View Page</title>
 </head>
 <body>
-	<h2>Mon Panier</h2>
-	<table>
-		<td><c:forEach items="${ lignes }" var="element">
+<h3>voir mon panier</h3>
+	<div id="panier" >
+		<c:if test="${panier.size!=0}">
+			<table>
+				<td>
 				<tr>
-					<td><img src=${element.produit.urlImage }"/></td>
-					<td>${element.produit.designation}</td>
-					<td>${element.produit.prixUnitaire}</td>
-					<td>${element.quantite}</td>
-					<td><input type="number" value="1" min="0" max="10" step="1" /></td>
-					
-				  	<td>
-					<button type="button" class="btn btn-default btn-sm">
-						<span class="glyphicon glyphicon-trash"></span>
-					</button>
-					</td>
-<%-- 					<a href="panier?id=${element.id}&action=remove"> --%>
+					<th colspan="1">Article</th>
+					<th colspan="2">Designation</th>
+					<th colspan="3">PrixUnitaire</th>
+					<th colspan="4">Quantité</th>
+					<th colspan="5">PrixTotal</th>
+					<th></th>
+					<th></th>
 				</tr>
-			</c:forEach>
-	</table>
+				<c:forEach items="${lignes}" var="article">
+					<tr>
+						<td colspan="1"><img src=${article.produit.urlImage} width="100" height="100" /></td>
+						<td colspan="2">${article.produit.designation}</td>
+						<td colspan="3">${article.produit.prixUnitaire}€</td>
+						<!-- 					<td><input type="number" value="1" min="0" max="10" step="1" /></td>  -->
+						<td colspan="4">${article.quantiteCommande}</td>
+						<td colspan="5">${article.quantiteCommande*article.produit.prixUnitaire}</td>
+						<%-- 				  	<td><a href="panier?id=${element.produit.id}&action=remove"> <i class="fas fa-trash-alt"></i>	 --%>
+
+					</tr>
+				</c:forEach>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td colspan="4">Nombre de articles:</td>
+				<td>${panier.size}</td>
+				<td colspan="5">Total:</td>
+				<td>${panier.total}</td>
+
+				</td>
+
+			</table>
+		</c:if>
+	</div>
+	<div id="produits">
+		<c:forEach items="${produits}" var="produit">
+			<div class="ficheproduit">
+				<table>
+
+					<tr>
+						<td colspan="2"><img src="urlImage?id=${produit.id}"
+							width="100" height="100" /></td>
+					</tr>
+					<tr>
+						<td>Designation :</td>
+						<td>${produit.designation}</td>
+					</tr>
+					<tr>
+						<td>PrixUnitaire :</td>
+						<td>${produit.prixUnitaire}</td>
+					</tr>
+					<tr>
+						<td>Quantite Stock :</td>
+						<td>${produit.quantiteStock}</td>
+					</tr>
+
+					<tr>
+						<td colspan="2">
+							<form action="panier">
+								<input type="hidden" value="${produit.id}" name="id"> <input
+									type="text" value="1" name="quantite"> <input
+									type="submit" value="Ajouter au Panier">
+							</form>
+						</td>
+					</tr>
+				</table>
+		</c:forEach>
+
+	</div>
 </body>
 </html>

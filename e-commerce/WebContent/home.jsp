@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
 </head>
 <body>
 <header>
@@ -34,22 +33,30 @@
         <li><a href="deconnexion">Logout</a></li>
        
       </ul>
+   
       <ul class="nav navbar-nav navbar-right">
         <li><a href="connexion"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
-        <li><a href="panier"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+        <li class="nav-item px-3 text-uppercase mb-0 position-relative d-lg-flex">
+        <div id="cart" class="d-none">
+
+        </div>
+        <a href="/store/cart.stml" class="cart position-relative d-inline-flex" aria-label="View your shopping cart">
+          <i class="fas fa fa-shopping-cart fa-lg"></i>
+          <span class="cart-basket d-flex align-items-center justify-content-center">
+            0
+          </span>
+        </a>
+      </li>
       </ul>
     </div>
   </div>
 </nav>
-
-<main>
-		<article class=container>
+<main>		<article class=container>
 			<div
 				style="display: flex; flex-wrap: wrap; justify-content: space-between; align-content: space-between">
 				<c:forEach items="${ produits }" var="produit">​
 					<figure style="width: 46%; height: 45vh;">
-					<a href="article?id=${ produit.id }"> <img
-							src="${ produit.urlImage }" alt="${ produit.designation }"
+					<a href="article?id=${ produit.id }"> <img src="${ produit.urlImage }" alt="${ produit.designation }"
 							style="width: 100%; height: 90%;">						
 							<figcaption style="text-align: center"	class="badge badge-secondary">
 								<c:out  value="${ produit.designation }" />
@@ -62,9 +69,6 @@
 			</div>
 		</article>
 	</main>
-
-
-
 <footer class="container-fluid text-center">
   <p>Online Store Copyright</p>  
   <form class="form-inline">Get deals:

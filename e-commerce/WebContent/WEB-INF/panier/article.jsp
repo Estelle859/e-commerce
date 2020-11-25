@@ -12,7 +12,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<script src="https://kit.fontawesome.com/a6c393237d.js"></script>
 	<script src="InputSpinner.js"></script>
-<title>Article Page</title>
+<title>Article d'un article selectionné</title>
 </head>
 <body>
 <!-- 	<header> -->
@@ -38,17 +38,29 @@
     </ul>
   </div>
 	</nav>
-	<main>
-		<div class="container">
-		 <h2>Article Selected :</h2>										     	
-       	 <div>${article.designation}</div>       	  
-         <a href="element?id=${article.id}"> <img  src=${article.urlImage}  
-       	 alt="imagearticle"  width="400" height="400">		   
-	   	<td> prix : ${article.prixUnitaire}€</td>
-	   	<td> quantite : <input type="number" value="1" min="0" max="10" step="1"></td>
-	   	<td><a href="panier?id=${article.id}&qte="demo"&action=add"><i class="fas fa-cart-plus"></i></td>
-		
-		</div>
+	<main>	
+		 <form method="post" action="article" >
+            <fieldset>
+                <legend>Selected Article</legend>              
+                <div>
+                	<p>${article.designation}</p>                
+                </div>
+				<div>
+					<p> 
+         				<img  src=${article.urlImage}  alt="imagearticle"  width="400" height="300">
+         			</p>	
+         		</div>              		
+                <div>
+               		<p> prix : ${article.prixUnitaire}€ </p>               
+                </div>
+                <div>            
+                    <p> quantite : <input type="number" name="number" value="1" min="0" max="10" step="1"></p>
+                </div>  
+               <div>
+               	 <a href="panier?id=${article.id}&quantite=1">add to cart : <i class="fas fa-cart-plus"></i>
+               </div>
+            </fieldset> 
+            </form> 
 	</main>
 </body>
 

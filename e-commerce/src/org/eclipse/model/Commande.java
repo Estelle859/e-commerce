@@ -10,17 +10,18 @@ public class Commande{
 	private Date dateComande;
 	private Client client;	
 	//private float totalPrix;
-	private Collection<LigneCommande> lignecommandes;;	
+	private Collection<LigneCommande> lignecommandes;
+	
+	public Commande() {
+		
+	}	
 
 	public Commande(int id, Date dateComande, Client client ) {		
 		this.id = id;
 		this.dateComande = dateComande;
 		this.client = client;		
 	}
-	public Commande() {
-		// TODO Auto-generated constructor stub
-	}
-	
+
 	public int getId() {
 		return id;
 	}

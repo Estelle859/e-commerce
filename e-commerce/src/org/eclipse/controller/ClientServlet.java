@@ -9,19 +9,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.eclipse.model.Panier;
 import org.eclipse.model.Produit;
-import org.eclipse.service.PanierService;
 import org.eclipse.service.ProduitService;
 
 @WebServlet("/client")
 public class ClientServlet extends HttpServlet {
-
-    PanierService ps = new PanierService(); 
+    Panier panier = new Panier(); 
 	ProduitService produitservice = new ProduitService();
 	private static final long serialVersionUID = 1L;
 	private ProduitService produitService = new ProduitService();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("CLIENT SERVLET:: GET ");
+		//geting number of articles in the panier	
+		request.setAttribute("panier",panier);
 		request.setAttribute("produits", produitService.getAllProducts());
 		getServletContext().getRequestDispatcher("/WEB-INF/client/client.jsp").forward(request, response);
 	}

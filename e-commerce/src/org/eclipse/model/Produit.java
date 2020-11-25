@@ -7,7 +7,7 @@ public class Produit {
 	private int id;
 	private String designation;
 	private float prixUnitaire;
-	private int quantite;
+	private int quantiteStock;
 	private String urlImage;
 	private boolean selectionne;
 	private Categorie categorie;
@@ -20,10 +20,10 @@ public class Produit {
 		this.id = i;
 		this.designation = designation;
 		this.prixUnitaire = prixUnitaire;
-		this.quantite = quantite;
+		this.quantiteStock = quantite;
 		this.urlImage = urlImage;
 		this.selectionne = selectionne;
-		this.categorie = categorie;
+		//this.categorie = categorie;
 	}
 	
 	public int getId() {
@@ -44,11 +44,11 @@ public class Produit {
 	public void setPrixUnitaire(float prixUnitaire) {
 		this.prixUnitaire = prixUnitaire;
 	}
-	public int getQuantite() {
-		return quantite;
+	public int getQuantiteStock() {
+		return quantiteStock;
 	}
-	public void setQuantite(int quantite) {
-		this.quantite = quantite;
+	public void setQuantiteStock(int quantite) {
+		this.quantiteStock = quantite;
 	}
 	public String getUrlImage() {
 		return urlImage;
@@ -71,7 +71,7 @@ public class Produit {
 	@Override
 	public String toString() {
 		return "Produit [id=" + id + ", designation=" + designation + ", prixUnitaire=" + prixUnitaire + ", quantite="
-				+ quantite + ", urlImage=" + urlImage + ", selectionne=" + selectionne + ", categorie=" + categorie
+				+ quantiteStock + ", urlImage=" + urlImage + ", selectionne=" + selectionne + ", categorie=" + categorie
 				+ "]";
 	}
 }

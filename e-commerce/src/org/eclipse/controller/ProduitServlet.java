@@ -39,7 +39,7 @@ public class ProduitServlet extends HttpServlet {
 		case "add":
 			operation = "Ajouter";
 			// liste categories
-			categories = cs.findAll();
+			categories = cs.listCategories();
 			request.setAttribute("categories", categories);
 			vue = "/WEB-INF/produit/addProduit.jsp";
 			break;
@@ -48,7 +48,7 @@ public class ProduitServlet extends HttpServlet {
 			int id = Integer.parseInt(request.getParameter("id"));
 			Produit produit =  ps.findByIdProduct(id);               
             request.setAttribute("produit",produit);
-           	categories = cs.findAll();
+            categories = cs.listCategories();
 			request.setAttribute("categories", categories);
 			operation = "Modifier";
 			vue = "/WEB-INF/produit/editProduit.jsp";
@@ -86,10 +86,9 @@ public class ProduitServlet extends HttpServlet {
 			produit.setPrixUnitaire(Float.parseFloat(request.getParameter("prixUnitaire")));
 			System.out.println("cATEGORIE " +request.getParameter("categorie"));
 			produit.getCategorie().setIdCate(Integer.parseInt(request.getParameter("categorie")));
-			produit.setQuantite(Integer.parseInt(request.getParameter("quantite")));
-			produit.setUrlImage((request.getParameter("urlImage")));
-			System.out.println("produits ==> " + produit.getDesignation()+produit.getPrixUnitaire()+produit.getCategorie()+produit.getQuantite());          
-			ps.saveProduct(produit);
+			produit.setQuantiteStock(Integer.parseInt(request.getParameter("quantiteStock")));
+			produit.setUrlImage((request.getParameter("urlImage")));       
+			ps.save(produit);
 			produits = ps.getAllProducts();
 			request.setAttribute("produits",produits);
 			vue = "/WEB-INF/produit/listProduit.jsp";
@@ -101,9 +100,9 @@ public class ProduitServlet extends HttpServlet {
 			 System.out.println("nom produit " +request.getParameter("designation") + request.getParameter("id"));
 			 prd.setPrixUnitaire(Float.parseFloat(request.getParameter("prixUnitaire")));
 	    	 prd.getCategorie().setIdCate(Integer.parseInt(request.getParameter("categorie")));
-			 prd.setQuantite(Integer.parseInt(request.getParameter("quantite")));
+			 prd.setQuantiteStock(Integer.parseInt(request.getParameter("quantite")));
 			 prd.setUrlImage((request.getParameter("urlImage")));
-             ps.updateProduct(prd);
+             ps.update(prd);
              produits = ps.getAllProducts();          
              request.setAttribute("produits", produits);
          	vue = "/WEB-INF/produit/listProduit.jsp";

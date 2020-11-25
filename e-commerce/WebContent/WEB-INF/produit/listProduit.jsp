@@ -36,18 +36,18 @@
 						<th>PrixUnitaire</th>
 						<th>Categorie</th>
 						<th></th>
-						<th></th>
-					</tr> <c:forEach items="${ produits }" var="element">
-						<tr>
-							<td>${element.designation}</td>
-							<td>${element.prixUnitaire}</td>
-							<td>${element.categorie}</td>
-							<td><a href="produit?id=${element.id}&action=remove"> <i
-									class="fa fa-minus-square"></i></td>
-							<td><a href="produit?id=${element.id}&action=edit"> <i
-									class="fas fa-edit"></i></td>
-
-						</tr>
+						<th></th>												
+					</tr> 
+					<c:forEach items="${ produits }" var="element">
+					<tr>
+						<td>${element.designation}</td>
+						<td>${element.prixUnitaire}</td>
+						<td>${element.categorie}</td>
+						<td><a href="produit?id=${element.id}&action=remove"> <i
+								class="fa fa-minus-square"></i></td>
+						<td><a href="produit?id=${element.id}&action=edit"> <i
+								class="fas fa-edit"></i></td>
+					</tr>
 					</c:forEach>
 		</table>
 </body>
