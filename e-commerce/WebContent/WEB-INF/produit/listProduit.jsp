@@ -22,33 +22,86 @@
 <title>My Product Page</title>
 </head>
 <body>
-	<h2>Gestion de Produits</h2>
-	<h3>
-		Operation:
-		<c:out value="${ operation }"></c:out>
-	</h3>
-	<section>
-		<table>
-			<td><a href="produit?id=${produit.id}&action=add"> <i
-					class="fa fa-plus-square"></i>
-					<tr>
-						<th>Designation</th>
-						<th>PrixUnitaire</th>
-						<th>Categorie</th>
-						<th></th>
-						<th></th>												
-					</tr> 
-					<c:forEach items="${ produits }" var="element">
+	<div class="container">
+		<table class="table table-bordered table-hover">
+			<thead>
+				<td><a href="produit?id=${produit.id}&action=add"> <i
+						class="fa fa-plus-square"></i>
+						<tr>
+							<th>Designation</th>
+							<th>PrixUnitaire</th>
+							<th>Quanté en stock</th>
+						</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${ produits }" var="element">
 					<tr>
 						<td>${element.designation}</td>
 						<td>${element.prixUnitaire}</td>
-						<td>${element.categorie}</td>
-						<td><a href="produit?id=${element.id}&action=remove"> <i
+						<td>${element.quantiteStock}</td>
+
+						<td><a href="produit?id=${element.id}&action=delete"> <i
 								class="fa fa-minus-square"></i></td>
-						<td><a href="produit?id=${element.id}&action=edit"> <i
+						<td><a href="produit?id=${element.id}&action=update"> <i
 								class="fas fa-edit"></i></td>
 					</tr>
-					</c:forEach>
+				</c:forEach>
+			</tbody>
 		</table>
+	</div>
+	<div class="container">
+		<c:if test="${ !fn:contains(operation, 'Ajouter') }">
+			
+		</c:if>
+		<c:if test="${ !fn:contains(operation, 'Supprimer') }">
+		<form method="POST" action="${ action }">
+	
+		
+				<div class="form-group row">
+					<label for="designation" class="col-sm-2 col-form-label">Designation</label>
+					<div class="col-sm-10">
+						<input type="designation" class="form-control" id="designation"
+							placeholder="Designation du Produit">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="prixUnitaire" class="col-sm-2 col-form-label">Prix
+						Unitaire</label>
+					<div class="col-sm-10">
+						<input type=type= "number" class="form-control" id="prixUnitaire"
+							placeholder="Prix Unitaire">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="quantiteStock" class="col-sm-2 col-form-label">Quantite
+						En Stock</label>
+					<div class="col-sm-10">
+						<input type=type= "number" class="form-control" id="quantiteStock"
+							placeholder="Quantite En Stock">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="urlImage" class="col-sm-2 col-form-label">url
+						d'Image</label>
+					<div class="col-sm-10">
+						<input type="urlImage" class="form-control" id="urlImage"
+							placeholder="url d'Image">
+					</div>
+				</div>
+				<div class="form-group row">
+					<div class="col-sm-10 offset-sm-2">
+						<label for="selectionne">ProduitSelectionne</label> <input
+							type="number" id="selectionne" name="selectionne" min="0" max="1">
+					</div>
+				</div>
+			
+			<div class="form-group row">
+				<div class="col-sm-10 offset-sm-2">
+					<button type="submit" class="btn btn-primary">${operation }</button>
+				</div>
+			</div>
+		</form>
+		</c:if>
+	</div>
 </body>
 </html>

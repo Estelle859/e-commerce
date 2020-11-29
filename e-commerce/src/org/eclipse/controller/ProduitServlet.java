@@ -15,109 +15,117 @@ import org.eclipse.model.Produit;
 import org.eclipse.service.CategorieService;
 import org.eclipse.service.ProduitService;
 
-@WebServlet({"/produit","/add", "/remove","/update"})
-
+@WebServlet({"/produit","/add", "/delete","/update"})
 public class ProduitServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private List<Produit> produits = new ArrayList<>();
 	private List<Categorie> categories = new ArrayList<>();
-	private ProduitService ps = new ProduitService();
+	private ProduitService produitService = new ProduitService();
 	private CategorieService cs = new CategorieService();
 	String vue;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-	//	String url = request.getServletPath();
-	//	String action = url.substring(1);
-	//	System.out.println(url);
-		String action="";
-		String operation = "";
+		
+		String url = request.getServletPath();
+		String action = url.substring(1);
+		System.out.println(url);
+		String operation = "";	
 		if(request.getParameter("action")!=null) action = request.getParameter("action");   
-		System.out.println("action get ===>" + action);
-		switch (action) {    
-		//switch (url) {
+		System.out.println("produit servlet :: action get ===>" + action);
+		System.out.println(" url" +url);
+		
+		switch (action) {   
+		
 		case "add":
+			System.out.println("je suis sur ajouter");
 			operation = "Ajouter";
 			// liste categories
-			categories = cs.listCategories();
-			request.setAttribute("categories", categories);
-			vue = "/WEB-INF/produit/addProduit.jsp";
+			//	categories = cs.listCategories();
+			//request.setAttribute("categories", categories);			
 			break;
-		case "edit":
-			System.out.println("produit id " + request.getParameter("id"));
-			int id = Integer.parseInt(request.getParameter("id"));
-			Produit produit =  ps.findByIdProduct(id);               
-            request.setAttribute("produit",produit);
-            categories = cs.listCategories();
-			request.setAttribute("categories", categories);
+			
+		case "update":
 			operation = "Modifier";
-			vue = "/WEB-INF/produit/editProduit.jsp";
+//			System.out.println("produit id " + request.getParameter("id"));
+//			int idP = Integer.parseInt(request.getParameter("id"));
+//			produit = produitService.findByIdProduct(idP);
+//			request.setAttribute("produit", produit);			
 			break;
-		case "remove":
-			System.out.println("produit id " + request.getParameter("id"));
-			int idP = Integer.parseInt(request.getParameter("id"));
-			produit = ps.findByIdProduct(idP);
-			request.setAttribute("produit", produit);
-			operation = "Supprimer";
-			vue = "/WEB-INF/produit/deleteProduit.jsp";
-			break;
-		default:
-			produits = ps.getAllProducts();
-			request.setAttribute("produits", produits);
-			vue = "/WEB-INF/produit/listProduit.jsp";
+			
+		case "delete":
 
+			operation = "Supprimer";
+//			System.out.println("produit id " + request.getParameter("id"));
+//			int id = Integer.parseInt(request.getParameter("id"));
+//			Produit produit =  produitService.findByIdProduct(id);               
+//            request.setAttribute("produit",produit);
+//            categories = cs.listCategories();
+//			request.setAttribute("categories", categories);				
+			break;
+
+		default:
+			//produits =produitService.findAll();
+			//request.setAttribute("produits", produits);
 		}
 		request.setAttribute("action", action);
 		request.setAttribute("operation", operation);
-		this.getServletContext().getRequestDispatcher(vue).forward(request, response);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/produit/listProduit.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String action="";
-		if(request.getParameter("action")!=null) action = request.getParameter("action");  
-        System.out.println("action post===>" + action);
-		//String url = request.getServletPath();
-		//switch (url) {
-        switch (action) {
-		case "add":
-			Produit produit = new Produit();
-			produit.setDesignation(request.getParameter("designation"));
-			produit.setPrixUnitaire(Float.parseFloat(request.getParameter("prixUnitaire")));
-			System.out.println("cATEGORIE " +request.getParameter("categorie"));
-			produit.getCategorie().setIdCate(Integer.parseInt(request.getParameter("categorie")));
-			produit.setQuantiteStock(Integer.parseInt(request.getParameter("quantiteStock")));
-			produit.setUrlImage((request.getParameter("urlImage")));       
-			ps.save(produit);
-			produits = ps.getAllProducts();
-			request.setAttribute("produits",produits);
-			vue = "/WEB-INF/produit/listProduit.jsp";
-			break;
-		case "edit":			
-			 Produit prd = new Produit(); 
-			 prd.setId(Integer.parseInt(request.getParameter("id")));  
-			 prd.setDesignation(request.getParameter("designation"));
-			 System.out.println("nom produit " +request.getParameter("designation") + request.getParameter("id"));
-			 prd.setPrixUnitaire(Float.parseFloat(request.getParameter("prixUnitaire")));
-	    	 prd.getCategorie().setIdCate(Integer.parseInt(request.getParameter("categorie")));
-			 prd.setQuantiteStock(Integer.parseInt(request.getParameter("quantite")));
-			 prd.setUrlImage((request.getParameter("urlImage")));
-             ps.update(prd);
-             produits = ps.getAllProducts();          
-             request.setAttribute("produits", produits);
-         	vue = "/WEB-INF/produit/listProduit.jsp";
- 			break; 
-		case "remove":   
-			System.out.println("we have to remove product id :::" +request.getParameter("id") );
-			ps.removeById(Integer.parseInt(request.getParameter("id")));
-			produits = ps.getAllProducts();
-			request.setAttribute("produits", produits);
-			vue = "/WEB-INF/produit/listProduit.jsp";
-			break;
+
+		String url = request.getServletPath();	
+		String action=null;
+		if(request.getParameter("action")!=null) action = request.getParameter("action");   
+		switch (action) {  
+		
+		 case "add": 	
+			 	System.out.println("je suis sur ajouter");
+				String designation = request.getParameter("designation");
+				Float prixUnitaire = Float.parseFloat(request.getParameter("prixUnitaire"));
+				int quantiteStock= Integer.parseInt(request.getParameter("quantiteStock"));
+				String urlImage = request.getParameter("urlImage");
+				int selectionne = Integer.parseInt(request.getParameter("selectionne"));
+				Produit produit = new Produit(designation,prixUnitaire,quantiteStock,urlImage);
+				request.setAttribute("produit", produit);
+				produitService.save(produit);		      
+				produits = produitService.findAll();
+				request.setAttribute("produits",produits);
+				doGet(request, response);
+				//vue = "/WEB-INF/produit/listProduit.jsp";				
+				break;
+		 case "update":	
+			 System.out.println("je suis sur modifier");
+				 Produit prd = new Produit(); 
+				 prd.setId(Integer.parseInt(request.getParameter("id")));  
+				 prd.setDesignation(request.getParameter("designation"));
+				 System.out.println("nom produit " +request.getParameter("designation") + request.getParameter("id"));
+				 prd.setPrixUnitaire(Float.parseFloat(request.getParameter("prixUnitaire")));
+		  //  	 prd.getCategorie().setIdCate(Integer.parseInt(request.getParameter("categorie")));
+				 prd.setQuantiteStock(Integer.parseInt(request.getParameter("quantite")));
+				 prd.setUrlImage((request.getParameter("urlImage")));
+				 prd.setSelectionne(Integer.parseInt(request.getParameter("selectionne")));
+	             produitService.update(prd);
+	             produits = produitService.findAll();          
+	             request.setAttribute("produits", produits);
+	             doGet(request, response);
+	         	//vue = "/WEB-INF/produit/listProduit.jsp";
+	 			break; 
+		  case  "delete":    
+			  System.out.println("je suis sur supprimer");
+				System.out.println("we have to remove product id :::" +request.getParameter("id") );
+				produitService.remove(Integer.parseInt(request.getParameter("id")));
+				produits = produitService.findAll();
+				request.setAttribute("produits", produits);
+				doGet(request, response);
+				//vue = "/WEB-INF/produit/listProduit.jsp";
+				break;
 		default:
-			produits = ps.getAllProducts();
-			request.setAttribute("produits", produits);
-			vue = "/WEB-INF/produit/listProduit.jsp";
+				produits = produitService.findAll();
+				request.setAttribute("produits", produits);
+				vue = "/WEB-INF/produit/listProduit.jsp";
 		}
 		this.getServletContext().getRequestDispatcher(vue).forward(request, response);
 

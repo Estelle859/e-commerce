@@ -9,15 +9,33 @@ public class Produit {
 	private float prixUnitaire;
 	private int quantiteStock;
 	private String urlImage;
-	private boolean selectionne;
-	private Categorie categorie;
+	private int selectionne = 0;
+//private Categorie categorie;
 	
 	public Produit() {
-		categorie =  new Categorie();
+		//categorie =  new Categorie();
 	}
-	public Produit(int i, String designation, float prixUnitaire, int quantite, String urlImage, boolean selectionne,
-			Categorie categorie) {		
-		this.id = i;
+	public Produit(int i) {
+		this.id=id;
+	}
+	public Produit(String designation, float prixUnitaire, int quantiteStock, String urlImage) {
+		
+		this.designation = designation;
+		this.prixUnitaire = prixUnitaire;
+		this.quantiteStock = quantiteStock;
+		this.urlImage = urlImage;
+		
+	}
+	public Produit(String designation, float prixUnitaire, int quantiteStock, String urlImage, int selectionne) {
+	
+		this.designation = designation;
+		this.prixUnitaire = prixUnitaire;
+		this.quantiteStock = quantiteStock;
+		this.urlImage = urlImage;
+		this.selectionne = selectionne;
+	}
+	public Produit(int id, String designation, float prixUnitaire, int quantite, String urlImage,int selectionne) {		
+		this.id = id;
 		this.designation = designation;
 		this.prixUnitaire = prixUnitaire;
 		this.quantiteStock = quantite;
@@ -56,22 +74,22 @@ public class Produit {
 	public void setUrlImage(String urlImage) {
 		this.urlImage = urlImage;
 	}
-	public boolean isSelectionne() {
+	public int isSelectionne() {
 		return selectionne;
 	}
-	public void setSelectionne(boolean selectionne) {
+	public void setSelectionne(int selectionne) {
 		this.selectionne = selectionne;
 	}
-	public Categorie getCategorie() {
-		return categorie;
-	}
-	public void setCategorie(Categorie categorie) {
-		this.categorie = categorie;
-	}
+//	public Categorie getCategorie() {
+//		return categorie;
+//	}
+//	public void setCategorie(Categorie categorie) {
+//		this.categorie = categorie;
+//	}
 	@Override
 	public String toString() {
 		return "Produit [id=" + id + ", designation=" + designation + ", prixUnitaire=" + prixUnitaire + ", quantite="
-				+ quantiteStock + ", urlImage=" + urlImage + ", selectionne=" + selectionne + ", categorie=" + categorie
+				+ quantiteStock + ", urlImage=" + urlImage + ", selectionne=" + selectionne 
 				+ "]";
 	}
 }

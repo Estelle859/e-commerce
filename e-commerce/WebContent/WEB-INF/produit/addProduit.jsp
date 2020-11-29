@@ -58,21 +58,17 @@
 					<th>Categorie</th>
 					<th>Quantité</th>
 					<th>UrlImage</th>
-				</tr>
-			 
+				</tr>			 
 			 </thead>
 			<tbody>
 			   
-				<c:forEach items="${ produits }" var="element">
-				
-					<tr>
-						
+				<c:forEach items="${ produits }" var="element">				
+					<tr>						
 						<td>${element.designation}</td>
 						<td>${element.prixUnitaire}</td>
 						<td>${element.categorie}</td>
 						<td>${element.quantite}</td>
-						<td>${element.urlImage}</td>
-						
+						<td>${element.urlImage}</td>						
 					</tr>
 				</c:forEach>
 			</tbody>	

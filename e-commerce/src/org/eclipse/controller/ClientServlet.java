@@ -22,9 +22,8 @@ public class ClientServlet extends HttpServlet {
 	private ProduitService produitService = new ProduitService();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("CLIENT SERVLET:: GET ");
-		//geting number of articles in the panier	
 		request.setAttribute("panier",panier);
-		request.setAttribute("produits", produitService.getAllProducts());
+		request.setAttribute("produits", produitService.findAll());
 		getServletContext().getRequestDispatcher("/WEB-INF/client/client.jsp").forward(request, response);
 	}
 

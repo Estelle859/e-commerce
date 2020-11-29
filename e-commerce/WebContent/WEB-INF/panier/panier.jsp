@@ -27,7 +27,7 @@
 <body>
 <h3>voir mon panier</h3>
 	<div id="panier" >
-		<c:if test="${panier.size!=0}">
+<%-- 		<c:if test="${panier.size!=0}"> --%>
 			<table>
 				<td>
 				<tr>
@@ -56,49 +56,49 @@
 				<td></td>
 				<td></td>
 				<td colspan="4">Nombre de articles:</td>
-				<td>${panier.size}</td>
+<%-- 				<td>${panier.size}</td> --%>
 				<td colspan="5">Total:</td>
-				<td>${panier.total}</td>
+<%-- 				<td>${panier.total}</td> --%>
 
 				</td>
 
 			</table>
-		</c:if>
+<%-- 		</c:if> --%>
 	</div>
-	<div id="produits">
-		<c:forEach items="${produits}" var="produit">
-			<div class="ficheproduit">
-				<table>
+<!-- 	<div id="produits"> -->
+<%-- 		<c:forEach items="${produits}" var="produit"> --%>
+<!-- 			<div class="ficheproduit"> -->
+<!-- 				<table> -->
 
-					<tr>
-						<td colspan="2"><img src="urlImage?id=${produit.id}"
-							width="100" height="100" /></td>
-					</tr>
-					<tr>
-						<td>Designation :</td>
-						<td>${produit.designation}</td>
-					</tr>
-					<tr>
-						<td>PrixUnitaire :</td>
-						<td>${produit.prixUnitaire}</td>
-					</tr>
-					<tr>
-						<td>Quantite Stock :</td>
-						<td>${produit.quantiteStock}</td>
-					</tr>
+<!-- 					<tr> -->
+<%-- 						<td colspan="2"><img src="urlImage?id=${produit.id}" --%>
+<!-- 							width="100" height="100" /></td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td>Designation :</td> -->
+<%-- 						<td>${produit.designation}</td> --%>
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td>PrixUnitaire :</td> -->
+<%-- 						<td>${produit.prixUnitaire}</td> --%>
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td>Quantite Stock :</td> -->
+<%-- 						<td>${produit.quantiteStock}</td> --%>
+<!-- 					</tr> -->
 
-					<tr>
-						<td colspan="2">
-							<form action="panier">
-								<input type="hidden" value="${produit.id}" name="id"> <input
-									type="text" value="1" name="quantite"> <input
-									type="submit" value="Ajouter au Panier">
-							</form>
-						</td>
-					</tr>
-				</table>
-		</c:forEach>
+<!-- 					<tr> -->
+<!-- 						<td colspan="2"> -->
+<!-- 							<form action="panier"> -->
+<%-- 								<input type="hidden" value="${produit.id}" name="id"> <input --%>
+<!-- 									type="text" value="1" name="quantite"> <input -->
+<!-- 									type="submit" value="Ajouter au Panier"> -->
+<!-- 							</form> -->
+<!-- 						</td> -->
+<!-- 					</tr> -->
+<!-- 				</table> -->
+<%-- 		</c:forEach> --%>
 
-	</div>
+<!-- 	</div> -->
 </body>
 </html>

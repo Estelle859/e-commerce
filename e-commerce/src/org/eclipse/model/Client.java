@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Client {
-	
+	private int id;
 	private String nom;
 	private String prenom;
 	private List<Adresse> adresses = new ArrayList<>();
@@ -12,17 +12,36 @@ public class Client {
 	private String telephone;
 	
 	public Client() {
-		super();
+		
 	}
-
-	public Client(Long id, String userNom, String motDePasse, String nom, String prenom, List<Adresse> adresses,
-			String email, String telephone) {
-	
+	public Client(int id) {
+		this.id=id;
+	}
+	public Client( String nom, String prenom) {	
 		this.nom = nom;
-		this.prenom = prenom;
-		this.adresses = adresses;
+		this.prenom = prenom;		
+	}
+	public Client( String nom, String prenom, String email, String telephone) {	
+		this.nom = nom;
+		this.prenom = prenom;	
 		this.email = email;
 		this.telephone = telephone;
+	}
+
+	public Client(int id, String nom, String prenom,String email, String telephone) {
+		this.id=id;
+		this.nom = nom;
+		this.prenom = prenom;	
+		this.email = email;
+		this.telephone = telephone;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getNom() {

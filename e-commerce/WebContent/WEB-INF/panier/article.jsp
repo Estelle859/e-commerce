@@ -39,28 +39,37 @@
   </div>
 	</nav>
 	<main>	
-		 <form method="post" action="article" >
+		 <form action="article" method="post" >
             <fieldset>
-                <legend>Selected Article</legend>              
+                <legend>Selected Article</legend>  
                 <div>
-                	<p>${article.designation}</p>                
+                	<input type="hidden" name="id" value="${article.id}">
+                                
+                </div>            
+                <div>
+                	<p>desigantion:${article.designation}</p>                
                 </div>
 				<div>
 					<p> 
-         				<img  src=${article.urlImage}  alt="imagearticle"  width="400" height="300">
+         			<img  src=${article.urlImage}  alt="imagearticle"  width="400" height="300">
          			</p>	
          		</div>              		
                 <div>
                		<p> prix : ${article.prixUnitaire}€ </p>               
                 </div>
-                <div>            
-                    <p> quantite : <input type="number" name="number" value="1" min="0" max="10" step="1"></p>
+                <div>           
+<!--            	<p> quantite : <input type="number" name="number" value="1" min="0" max="10" step="1"></p> -->
+               		<label for="quantite">Qauntite : </label> <input type="number" name="quantite"	id="quantite">
                 </div>  
                <div>
-               	 <a href="panier?id=${article.id}&quantite=1">add to cart : <i class="fas fa-cart-plus"></i>
+<%--                	 <a href="panier?id=${article.id}"> Ajouter Au Panier <i class="fas fa-cart-plus"></i> --%>
+              	<button>Ajouter au Panier</button>
                </div>
             </fieldset> 
-            </form> 
+       	</form> 
+       
+
+            
 	</main>
 </body>
 

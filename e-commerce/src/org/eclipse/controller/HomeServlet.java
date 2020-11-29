@@ -16,14 +16,13 @@ import org.eclipse.service.ProduitService;
 
 @WebServlet("/home")
 public class HomeServlet extends HttpServlet {
-	
-    private List<Produit> list = new ArrayList<>();
+
     ProduitService ps = new ProduitService(); 
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         System.out.println("HomeController :: GET");         
-        request.setAttribute("produits", ps.getAllProducts());
+        request.setAttribute("produits", ps.findAll());
     	getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);    
     }
 

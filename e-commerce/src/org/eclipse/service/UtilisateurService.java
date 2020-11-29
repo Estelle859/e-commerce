@@ -8,9 +8,9 @@ public class UtilisateurService {
 	private ArrayList<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
 
 	public UtilisateurService() {
-		utilisateurs.add(new Utilisateur(1, "wick","john", "client"));
-		utilisateurs.add(new Utilisateur(2, "dalton","jack", "vendeur"));
-		utilisateurs.add(new Utilisateur(3, "glou","mitro", "client"));
+//		utilisateurs.add(new Utilisateur(1, "wick","john", "client"));
+//		utilisateurs.add(new Utilisateur(2, "dalton","jack", "vendeur"));
+//		utilisateurs.add(new Utilisateur(3, "Kostas","Mitroglou", "client"));
 	}
 	
 	public Utilisateur findByNomAndPrenom(String nom, String prenom) {

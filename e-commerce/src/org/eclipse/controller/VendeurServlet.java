@@ -17,7 +17,7 @@ public class VendeurServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		System.out.println("VENDEUR SERVLET:: GET ");
-		request.setAttribute("produits", produitService.getAllProducts());
+		request.setAttribute("produits", produitService.findAll());
 		getServletContext().getRequestDispatcher("/WEB-INF/vendeur/vendeur.jsp").forward(request, response);
 	}
 
