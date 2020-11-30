@@ -39,6 +39,7 @@
   </div>
 	</nav>
 	<main>	
+	<h2> Client Page </h2>
 		 <form action="article" method="post" >
             <fieldset>
                 <legend>Selected Article</legend>  
@@ -47,7 +48,7 @@
                                 
                 </div>            
                 <div>
-                	<p>desigantion:${article.designation}</p>                
+                	<p>designation:${article.designation}</p>                
                 </div>
 				<div>
 					<p> 
@@ -59,11 +60,16 @@
                 </div>
                 <div>           
 <!--            	<p> quantite : <input type="number" name="number" value="1" min="0" max="10" step="1"></p> -->
-               		<label for="quantite">Qauntite : </label> <input type="number" name="quantite"	id="quantite">
+               		<label for="quantite">Qauntite : </label>
+               		<input type="number" value="1" min="0" max="10" step="1" id="quantite"  name="quantite"	>
+               		
                 </div>  
                <div>
-<%--                	 <a href="panier?id=${article.id}"> Ajouter Au Panier <i class="fas fa-cart-plus"></i> --%>
-              	<button>Ajouter au Panier</button>
+<%-- 				<a href="article?id=${article.id}"> Ajouter Au Panier <i class="fas fa-cart-plus"></i>  --%>
+<!--            <button>Ajouter au Panier</button> -->
+	           <button type="submit" class="btn btn-success">
+	    		<i class="fas fa-cart-plus"></i>
+			  </button>
                </div>
             </fieldset> 
        	</form> 

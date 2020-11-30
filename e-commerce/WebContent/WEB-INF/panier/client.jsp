@@ -5,23 +5,21 @@
 <head>
 <meta charset="UTF-8">
 <c:import url="/WEB-INF/shared/bs.jsp"></c:import>
-<title>Page du Vendeur</title>
+<title>Page du Client</title>
 </head>
 <body>
 	<header>
 		<c:import url="/WEB-INF/shared/header.jsp"></c:import>
 	</header>
+
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<c:import url="/WEB-INF/shared/nav.jsp"></c:import>
 	</nav>
 	<main>
-		
-		<c:import url="/WEB-INF/produit/listProduit.jsp"></c:import><br>
-		
-<%-- 		<c:import url="/WEB-INF/produit/produit.jsp"></c:import> --%>
+		<c:import url="/WEB-INF/produit/article.jsp"></c:import>
 	</main>
-<!-- 	<footer> -->
-<%-- 		<c:import url="/WEB-INF/shared/footer.jsp"></c:import>  --%>
-<!-- 	</footer> -->
+	<footer>
+		<%-- 		<c:import url="/WEB-INF/shared/footer.jsp"></c:import> --%>
+	</footer>
 </body>
 </html>

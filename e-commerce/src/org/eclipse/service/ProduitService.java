@@ -32,6 +32,7 @@ public class ProduitService {
 	}
 
 	public void remove(int id) {
+		System.out.println("je suis sur service produit supprimer with id : " + id);
 		produitDao.remove(produitDao.findById(id));
 	}	
 		

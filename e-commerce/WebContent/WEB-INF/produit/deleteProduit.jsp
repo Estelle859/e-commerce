@@ -8,18 +8,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-
-   <section>
-            <h1>**Delete Product Form **</h1>     
-            <h2>Do you want to delete  ${requestScope.produit.designation}</h2>
+   <section>               
+            <h2>Do you want to delete  ${produit.id}  ${produit.designation} ??</h2>
             <form action="produit" method="POST">
-                <input type="hidden" name="action"  value="remove"/>
-                <input type="hidden" name="id"  value="${requestScope.produit.id}"/>
+           		<input type="hidden" name="action" value="delete" />               
+                <input type="hidden" name="id"  value="${produit.id}"/>
                 <input type="submit" value="Delete"/>
-                <a href="produit">Cancel</a>                 
+                <a href="vendeur">Cancel</a>                 
             </form>             
-       </section>
-
+   </section>
 </body>
 </html>

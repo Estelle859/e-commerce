@@ -9,12 +9,13 @@ public class Produit {
 	private float prixUnitaire;
 	private int quantiteStock;
 	private String urlImage;
-	private int selectionne = 0;
-//private Categorie categorie;
+	private byte selectionne = 0;
+	//private Categorie categorie;
 	
 	public Produit() {
 		//categorie =  new Categorie();
 	}
+	
 	public Produit(int i) {
 		this.id=id;
 	}
@@ -26,7 +27,7 @@ public class Produit {
 		this.urlImage = urlImage;
 		
 	}
-	public Produit(String designation, float prixUnitaire, int quantiteStock, String urlImage, int selectionne) {
+	public Produit(String designation, float prixUnitaire, int quantiteStock, String urlImage, byte selectionne) {
 	
 		this.designation = designation;
 		this.prixUnitaire = prixUnitaire;
@@ -34,7 +35,7 @@ public class Produit {
 		this.urlImage = urlImage;
 		this.selectionne = selectionne;
 	}
-	public Produit(int id, String designation, float prixUnitaire, int quantite, String urlImage,int selectionne) {		
+	public Produit(int id, String designation, float prixUnitaire, int quantite, String urlImage,byte selectionne) {		
 		this.id = id;
 		this.designation = designation;
 		this.prixUnitaire = prixUnitaire;
@@ -74,12 +75,13 @@ public class Produit {
 	public void setUrlImage(String urlImage) {
 		this.urlImage = urlImage;
 	}
-	public int isSelectionne() {
+	public byte getSelectionne() {
 		return selectionne;
 	}
-	public void setSelectionne(int selectionne) {
+	public void setSelectionne(byte selectionne) {
 		this.selectionne = selectionne;
 	}
+
 //	public Categorie getCategorie() {
 //		return categorie;
 //	}

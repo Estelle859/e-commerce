@@ -22,14 +22,16 @@ public class ConnexionServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("CONNEXION SERVLET :: GET");
 		getServletContext().getRequestDispatcher("/WEB-INF/connexion/login.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String nom = request.getParameter("nom");
-		String prenom = request.getParameter("prenom");
-		Utilisateur utilisateur = utilisateurService.findByNomAndPrenom(nom, prenom);
+		System.out.println("CONNEXION SERVLET :: POST");
+		String userName = request.getParameter("email");
+		String password = request.getParameter("password");
+		Utilisateur utilisateur = utilisateurService.findByUserLogin(userName, password);
 		if (utilisateur == null) {
 			response.sendRedirect("connexion");
 		} else {
@@ -45,6 +47,6 @@ public class ConnexionServlet extends HttpServlet {
 		}
 	}
 }
-/*************************/
+
 
 

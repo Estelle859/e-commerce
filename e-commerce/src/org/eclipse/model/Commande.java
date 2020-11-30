@@ -9,7 +9,6 @@ public class Commande{
 	private int id;
 	private Date dateComande;
 	private Client client;	
-	//private float totalPrix;
 	private Collection<LigneCommande> lignecommandes;
 	
 	public Commande() {

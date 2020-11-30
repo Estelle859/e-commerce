@@ -10,29 +10,31 @@
 <body>
 	<h1>**Edit Product Form**</h1>
 	<div >
-		<h2>Do you want to modify ${requestScope.produit.designation} ?</h2>
+		<h2>Do you want to modify ${produit.designation} ?</h2>
 		<form action="produit" method="POST" >
 			<fieldset>
 			
-					<input type="hidden" name="action" value="edit" /> 				
-					<input type="hidden" id="id" name="id" value="${requestScope.produit.id}" /> 
+					<input type="hidden" name="action" value="update" /> 				
+					<input type="hidden" id="id" name="id" value="${produit.id}" /> 
 					<label 	for="designation">Designation : </label> 
-					<input type="text" name="designation" 	value="${requestScope.produit.designation}" id="designation" />
-				    <label for="categorie">Category :</label> 
-					<select name="categorie" id="categorie">
-						<c:forEach items="${requestScope.categories}" var="categorie">
-							<option value="${categorie.idCate}">${categorie.nomCategorie}</option>
-						</c:forEach>
-					</select> 						
+					<input type="text" name="designation" 	value="${produit.designation}" id="designation" />
+<!-- 				    <label for="categorie">Category :</label>  -->
+<!-- 					<select name="categorie" id="categorie"> -->
+<%-- 						<c:forEach items="${requestScope.categories}" var="categorie"> --%>
+<%-- 							<option value="${categorie.idCate}">${categorie.nomCategorie}</option> --%>
+<%-- 						</c:forEach> --%>
+<!-- 					</select> 						 -->
 					<label for="prixUnitaire">Prix Unitaire : </label>					
-					<input type="text" name="prixUnitaire" value="${requestScope.produit.prixUnitaire}" id="prixUnitaire" /> 
+					<input type="text" name="prixUnitaire" value="${produit.prixUnitaire}" id="prixUnitaire" /> 
 					
 					<label for="quantite">Quantite : </label> 
-					<input type="text" name="quantite" value="${requestScope.produit.quantite}" id="quantite" />		
+					<input type="text" name="quantite" value="${produit.quantiteStock}" id="quantite" />		
 					<label for="urlImage">Url Image :</label>
 					<textarea name="urlImage" rows="8" cols="40" class="editbody all-rounded">${requestScope.produit.urlImage}</textarea>
-					<input type="hidden" name="urlImage" value="${requestScope.produit.urlImage}" id="urlImage" class="editid hidden" />
-					<input type="submit" name="submit" value="${operation }" id="submit" />
+					<input type="hidden" name="urlImage" value="${produit.urlImage}" id="urlImage" class="editid hidden" />
+					<label for="selection">Selectionne : </label> 
+					<input type="text" name="selectionne" value="${produit.selectionne}" id="selectionne" />		
+					<input type="submit" name="submit" value="Modifier" id="submit" />
 					<a	href="produit">Cancel</a>					
 					
 			</fieldset>

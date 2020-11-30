@@ -4,55 +4,57 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.model.Categorie;
-import org.eclipse.model.LigneCommande;
+import org.eclipse.model.LignePanier;
+import org.eclipse.model.Panier;
 import org.eclipse.model.Produit;
 
 public class PanierService {
 	
-private List<LigneCommande> lignes = new  ArrayList<LigneCommande>();	
+	private List<LignePanier> lignes = new  ArrayList<>();	
 
 	public void addLigne(Produit produit,int quantite) {	
-			
-		//LigneCommande ligneCommande = lignes.get(produit.getId());
-		//System.out.println("ligne commmande " + ligneCommande);
 		
-	//	if(ligneCommande==null) {
-			LigneCommande article = new LigneCommande();
+		LignePanier ligne = lignes.get(produit.getId());		
+		if(ligne==null) {
+			LignePanier article = new LignePanier();
 			article.setProduit(produit);
-			article.setQuantiteCommande(quantite);				
+			article.setQuantiteSelectionne(quantite);				
 			lignes.add(article);
-	//	}else {
-//			System.out.println("adding article not null");	
-//			ligneCommande.setQuantiteCommande(ligneCommande.getQuantiteCommande()+quantite);
-//			System.out.println("quantite commande" + ligneCommande.getQuantiteCommande());
-	//}
+		}else {
+	
+			ligne.setQuantiteSelectionne(ligne.getQuantiteSelectionne()+quantite);
+
+		}
 	}
-	public Collection<LigneCommande> getLignes(){
+	public Collection<LignePanier> getLignes(){
 		return  lignes;
 		
 	}
 
 	public float getTotal() {
 		float total = 0;
-		Collection<LigneCommande> lignes = getLignes();
-		for(LigneCommande lc : lignes) {
-			total += lc.getProduit().getPrixUnitaire() * lc.getQuantiteCommande();
+		Collection<LignePanier> lignes = getLignes();
+		for(LignePanier lc : lignes) {
+			total += lc.getProduit().getPrixUnitaire() * lc.getQuantiteSelectionne();
 		}
 		return total;
 	}
 
 	public int getSize() {
-//		int nb = 0;
-//		Collection<LigneCommande> items = getLignes();
-//		for(LigneCommande item : items) {
-//			nb+= item.getQuantiteCommande();
-//		}
-//		return nb;		
-		return lignes.size();
+		int nb = 0;
+		Collection<LignePanier> items = getLignes();
+		for(LignePanier item : items) {
+			nb+= item.getQuantiteSelectionne();
+		}
+		return nb;		
+		//return lignes.size();
 	}
 	public void deleteLigne(int id) {
 		lignes.remove(id);
 	}
+	public Panier findByIdLigne(int idD) {
+			return null;
+	}
+	
 
 }

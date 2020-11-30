@@ -1,15 +1,19 @@
 package org.eclipse.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import org.eclipse.dao.LigneCommandeDao;
+import org.eclipse.dao.LignePanierDao;
 import org.eclipse.model.Categorie;
 import org.eclipse.model.LigneCommande;
+import org.eclipse.model.LignePanier;
 import org.eclipse.model.Produit;
 
 
 public class LigneCommandeService {
 	
-	private ArrayList<LigneCommande> lignes = new ArrayList<>();
+	private LigneCommandeDao ligneCommandeDao = new LigneCommandeDao();
 
 	public LigneCommandeService() {
 		
@@ -19,6 +23,22 @@ public class LigneCommandeService {
 //		
 	}
 	
-	
+	public LigneCommande save(LigneCommande ligne) {
+		return ligneCommandeDao.save(ligne);
+	}
 
+	public List<LigneCommande> findAll() {
+		return (List<LigneCommande>) ligneCommandeDao.findAll();
+	}
+
+	public void remove(int id) {
+		ligneCommandeDao.remove(ligneCommandeDao.findById(id));
+	}
+	public LigneCommande findById(int id) {
+		return ligneCommandeDao.findById(id);
+	}
+	public LigneCommande update(LigneCommande lp) {
+		return ligneCommandeDao.update(lp);
+		
+	}
 }

@@ -1,24 +1,41 @@
 package org.eclipse.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import org.eclipse.dao.UtilisateurDao;
 import org.eclipse.model.Utilisateur;
 
-public class UtilisateurService {
-	private ArrayList<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
 
-	public UtilisateurService() {
-//		utilisateurs.add(new Utilisateur(1, "wick","john", "client"));
-//		utilisateurs.add(new Utilisateur(2, "dalton","jack", "vendeur"));
-//		utilisateurs.add(new Utilisateur(3, "Kostas","Mitroglou", "client"));
-	}
+public class UtilisateurService {
 	
-	public Utilisateur findByNomAndPrenom(String nom, String prenom) {
-		for(Utilisateur utilisateur: utilisateurs) {
-			if(utilisateur.getNom().equals(nom) &&utilisateur.getPrenom().equals(prenom)) {
-				return utilisateur;
-			}
+	private UtilisateurDao userDao = new UtilisateurDao();
+	
+	public Utilisateur save(Utilisateur user) {
+		user.setNom(user.getNom().toUpperCase());
+		return userDao.save(user);
+	}
+	public Utilisateur update(Utilisateur user) throws Exception {
+		if (userDao.findById(user.getId()) == null) {
+			throw new Exception("Utilsateur introuvable");		
 		}
-		return null;
+		user.setNom(user.getNom().toUpperCase());
+		return userDao.update(user);
+	}
+	public void remove(Utilisateur user) throws Exception {
+		if (userDao.findById(user.getId()) == null) {
+			throw new Exception("Utilisateur introuvable");		
+		}	
+		userDao.remove(user);
+	}
+	public List<Utilisateur> findAll() {		
+		return userDao.findAll();	
+		
+	}
+	public Utilisateur findById(int id) {
+		return userDao.findById(id);		
+	}
+	public Utilisateur findByUserLogin(String userName, String password) {		
+		return userDao.findByUserLogin(userName, password);
 	}
 }

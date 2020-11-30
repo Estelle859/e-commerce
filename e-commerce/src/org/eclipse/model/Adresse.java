@@ -1,30 +1,49 @@
 package org.eclipse.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Adresse {
-	
-	private Long id;
+	private int id;
 	private String rue;
-	private String codepostal;
+	private String codePostal;
 	private String ville;
-	
-	public Adresse(Long id,String rue, String codepostal, String ville) {	
-		this.setId(id);
-		this.rue = rue;
-		this.codepostal = codepostal;
-		this.ville = ville;
+	private List<Utilisateur> utilisateurs = new ArrayList<>();
+	public Adresse() {
 	}
-	
+	public Adresse(int id) {
+		this.id = id;
+	}
+	public Adresse(String rue, String codePostal, String ville, List<Utilisateur>utilisateurs) {
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
+		this.utilisateurs = utilisateurs;
+	}
+	public Adresse(int id, String rue, String codePostal, String ville, List<Utilisateur> personnes) {
+		this.id = id;
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
+		this.utilisateurs = utilisateurs;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getRue() {
 		return rue;
 	}
 	public void setRue(String rue) {
 		this.rue = rue;
 	}
-	public String getCodepostal() {
-		return codepostal;
+	public String getCodePostal() {
+		return codePostal;
 	}
-	public void setCodepostal(String codepostal) {
-		this.codepostal = codepostal;
+	public void setCodePostal(String codePostal) {
+		this.codePostal = codePostal;
 	}
 	public String getVille() {
 		return ville;
@@ -32,20 +51,15 @@ public class Adresse {
 	public void setVille(String ville) {
 		this.ville = ville;
 	}
-
-	public Long getId() {
-		return id;
+	public List<Utilisateur> getUtilisateur() {
+		return utilisateurs;
 	}
-
-	public void setId(Long id2) {
-		this.id = id2;
+	public void setPersonnes(ArrayList<Utilisateur> utilisateurs) {
+		this.utilisateurs = utilisateurs;
 	}
-
 	@Override
 	public String toString() {
-		return "Adresse [id=" + id + ", rue=" + rue + ", codepostal=" + codepostal + ", ville=" + ville + "]";
+		return "Adresse [id=" + id + ", rue=" + rue + ", codePostal=" + codePostal + ", ville=" + ville + ", personnes="
+				+ utilisateurs + "]";
 	}
-	
-	
-
 }

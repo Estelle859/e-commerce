@@ -20,13 +20,13 @@ public class ProduitDao implements Dao<Produit> {
 		System.out.println("connection ::" + c);
 		if (c != null) {
 			try {
-				PreparedStatement ps = c.prepareStatement("INSERT into produit (designation,prixUnitaire,quantitéEnStock,urlImage, selectionne) values (?,?,?,?,?); ",
+				PreparedStatement ps = c.prepareStatement("INSERT into produit (designation,prixUnitaire,quantiteStock,urlImage, selectionne) values (?,?,?,?,?); ",
 						PreparedStatement.RETURN_GENERATED_KEYS);
 				ps.setString(1, produit.getDesignation());
 				ps.setFloat(2, produit.getPrixUnitaire());
 				ps.setInt(3, produit.getQuantiteStock());
 				ps.setString(4, produit.getUrlImage());
-				ps.setInt(5,produit.isSelectionne()); 			
+				ps.setInt(5,produit.getSelectionne()); 			
 				ps.executeUpdate();
 				ResultSet resultat = ps.getGeneratedKeys();
 				if (resultat.next()) {
@@ -46,7 +46,7 @@ public class ProduitDao implements Dao<Produit> {
 		Connection c = MyConnection.getConnection();
 		if (c != null) {
 			try {
-				PreparedStatement ps = c.prepareStatement("DELETE FROM  produit  WHERE id = ? ; ");
+				PreparedStatement ps = c.prepareStatement("DELETE FROM  produit  WHERE idProduit = ? ; ");
 				ps.setInt(1, produit.getId());
 				ps.executeUpdate();
 			} catch (SQLException e) {
@@ -62,13 +62,14 @@ public class ProduitDao implements Dao<Produit> {
 		
 		if (c != null) {
 			try { 
-				PreparedStatement ps = c.prepareStatement("UPDATE  produit SET designation=? , prixUnitaire=? , quantitéEnStock=?, urlImage=?, selectionne=?  WHERE id=? ; ",
+				PreparedStatement ps = c.prepareStatement("UPDATE  produit SET designation=? , prixUnitaire=? , quantiteStock=?, urlImage=?, selectionne=?  WHERE idProduit=? ; ",
 						PreparedStatement.RETURN_GENERATED_KEYS);
 				ps.setString(1, produit.getDesignation());
 				ps.setFloat(2, produit.getPrixUnitaire());
 				ps.setInt(3, produit.getQuantiteStock());
 				ps.setString(4, produit.getUrlImage());
-				ps.setInt(5,produit.isSelectionne());
+				ps.setInt(5,produit.getSelectionne());
+				ps.setInt(6, produit.getId());
 				int nbr = ps.executeUpdate();
 				if (nbr != 0) {
 					return produit;
@@ -86,7 +87,7 @@ public class ProduitDao implements Dao<Produit> {
 		Connection c = MyConnection.getConnection();
 		if (c != null) {
 			try {
-				PreparedStatement ps = c.prepareStatement("SELECT * FROM Produit WHERE id = ?;");
+				PreparedStatement ps = c.prepareStatement("SELECT * FROM Produit WHERE idProduit = ?;");
 				ps.setInt(1, idProduit);
 				ResultSet result = ps.executeQuery();
 				if (result.next()) {
@@ -95,7 +96,7 @@ public class ProduitDao implements Dao<Produit> {
 					Float prixUnitaire = result.getFloat(3);
 					int quantite = result.getInt(4);
 					String urlImage = result.getString(5);
-					int selectionne = result.getInt(6);
+					byte selectionne = result.getByte(6);
 					Produit produit = new Produit ( id,  designation,  prixUnitaire, quantite,  urlImage, selectionne);
 					return produit;
 				}
@@ -121,7 +122,7 @@ public class ProduitDao implements Dao<Produit> {
 					Float prixUnitaire = result.getFloat(3);
 					int quantite = result.getInt(4);
 					String urlImage = result.getString(5);
-					int selectionne = result.getInt(6);
+					byte selectionne = result.getByte(6);
 					Produit produit = new Produit ( id,  designation,  prixUnitaire, quantite,  urlImage, selectionne);
 					produits.add(produit);
 				}
@@ -144,7 +145,7 @@ public class ProduitDao implements Dao<Produit> {
 					Float prixUnitaire = result.getFloat(3);
 					int quantite = result.getInt(4);
 					String urlImage = result.getString(5);
-					int selectionne = result.getInt(6);
+					byte selectionne = result.getByte(6);
 					Produit produit = new Produit ( id,  designation,  prixUnitaire, quantite,  urlImage, selectionne);
 					selectionnes.add(produit);
 				}
