@@ -1,6 +1,7 @@
 package org.eclipse.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.dao.LigneCommandeDao;
@@ -41,4 +42,23 @@ public class LigneCommandeService {
 		return ligneCommandeDao.update(lp);
 		
 	}
+	public float getTotal() {
+		float total = 0;
+		List<LigneCommande> lignes = ligneCommandeDao.findAll();
+		for(LigneCommande lc : lignes) {
+			total += lc.getProduit().getPrixUnitaire() * lc.getQuantiteCommande();
+		}
+		return total;
+	}
+
+	public int getSize() {
+		int nb = 0;
+		List<LigneCommande> items =ligneCommandeDao.findAll();
+		for(LigneCommande item : items) {
+			nb+= item.getQuantiteCommande();
+		}
+		return nb;		
+		//return lignes.size();
+	}
+	
 }

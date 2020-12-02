@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.config.MyConnection;
@@ -15,6 +16,7 @@ import org.eclipse.model.LignePanier;
 public class LignePanierService {
 
 	private LignePanierDao lignePanierDao = new LignePanierDao();
+	private List<LignePanier> lignes = new  ArrayList<>();
 
 	public  LignePanierService() {
 
@@ -37,6 +39,24 @@ public class LignePanierService {
 	public LignePanier update(LignePanier lp) {
 		return lignePanierDao.update(lp);
 		
+	}
+	public float getTotal() {
+		float total = 0;
+		Collection<LignePanier> lignes = lignePanierDao.findAll();
+		for(LignePanier lc : lignes) {
+			total += lc.getProduit().getPrixUnitaire() * lc.getQuantiteSelectionne();
+		}
+		return total;
+	}
+
+	public int getSize() {
+		int nb = 0;
+		Collection<LignePanier> items =lignePanierDao.findAll();
+		for(LignePanier item : items) {
+			nb+= item.getQuantiteSelectionne();
+		}
+		return nb;		
+		//return lignes.size();
 	}
 	
 

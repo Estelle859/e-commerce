@@ -17,7 +17,7 @@
 				<li>
 					<form action="supprimerLigne" method="POST">
 						<input type="hidden" name="id" value="${ element.id }">
-						<c:out value="${ element.nom } : ${ element.type }"></c:out>
+						<c:out value="${ element.id }"></c:out>
 						<button>supprimer</button>
 					</form>
 				</li>

@@ -1,5 +1,8 @@
 package org.eclipse.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LignePanier {
 	
 	private int id;
@@ -7,7 +10,8 @@ public class LignePanier {
 	private Produit produit;
 	private Panier panier;
 
-
+	private List<Produit> produits = new ArrayList<>();
+	
 	public LignePanier() {
 	
 	}
@@ -33,11 +37,11 @@ public class LignePanier {
 		this.produit = produit;
 	}
 
-	public LignePanier(int id, int quantiteSelectionne, Produit produit) {
+	public LignePanier(int id, int quantiteSelectionne, List<Produit> produits) {
 	
 		this.id = id;
 		this.quantiteSelectionne = quantiteSelectionne;
-		this.produit = produit;
+		this.produits = produits;
 	}
 	
 	

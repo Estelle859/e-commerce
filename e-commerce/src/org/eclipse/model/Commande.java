@@ -9,7 +9,7 @@ public class Commande{
 	private int id;
 	private Date dateComande;
 	private Client client;	
-	private Collection<LigneCommande> lignecommandes;
+	private List<LigneCommande> lignecommandes = new ArrayList<>();
 	
 	public Commande() {
 		
@@ -52,14 +52,15 @@ public class Commande{
 //		this.totalPrix = totalPrix;
 //	}
 
-	public Collection<LigneCommande> getLignecommandes() {
+	public List<LigneCommande> getLignecommandes() {
 		return lignecommandes;
 	}
-	public void setLignecommandes(Collection<LigneCommande> lignecommandes) {
+	public void setLignecommandes(List<LigneCommande> lignecommandes) {
 		this.lignecommandes = lignecommandes;
 	}
 	public String toString() {
 		return "Commande [id=" + id + ", dateComande=" + dateComande + ", client=" + client + "]";
 	}
-	
+
+		
 }

@@ -30,10 +30,7 @@ public class ClientServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("ClientController :: POST");
-		String action="";
-		if(request.getParameter("action")!=null) 
-			action = request.getParameter("action");   
+		System.out.println("ClientController :: POST");		
 		int id = Integer.parseInt(request.getParameter("id"));
 		Produit article = produitservice.findByIdProduct(id);		
 		request.setAttribute("article",article);

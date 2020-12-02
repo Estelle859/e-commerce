@@ -1,4 +1,4 @@
-package org.eclipse.dao;
+package org.eclipse.service;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,27 +7,33 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.config.MyConnection;
-import org.eclipse.model.Adresse;
+import org.eclipse.model.Client;
+import org.eclipse.model.Commande;
+import org.eclipse.model.LigneCommande;
 import org.eclipse.model.LignePanier;
+import org.eclipse.model.Panier;
 import org.eclipse.model.Produit;
-import org.eclipse.model.Utilisateur;
+import org.eclipse.config.MyConnection;
+import org.eclipse.dao.CommandeDao;
+import org.eclipse.dao.LigneCommandeDao;
+import org.eclipse.dao.ProduitDao;
 
-
-public class LignePanierDao implements Dao<LignePanier> {
+public class CommandeService {
+	private CommandeDao commandeDao = new CommandeDao();
 	private ProduitDao produitDao = new  ProduitDao();
-	@Override
-	public LignePanier save(LignePanier lp) {	
+
+	public LigneCommande save(LigneCommande lp) {	
 		
 		Connection c = MyConnection.getConnection();
 		if (c != null) {
 			try {
-				PreparedStatement ps = c.prepareStatement("INSERT INTO lignepanier (quantiteSelectionne,produit) values (?,?); ",
+				PreparedStatement ps = c.prepareStatement("INSERT INTO lignecommande (quantiteCommande,produit,commande) values (?,?); ",
 						PreparedStatement.RETURN_GENERATED_KEYS);				
-				ps.setInt(1, lp.getQuantiteSelectionne());
+				ps.setInt(1, lp.getQuantiteCommande());
 				ps.setInt(2,lp.getProduit().getId());	
-				
+				ps.setInt(3, lp.getCommande().getId());
 				System.out.println("produit in ligne = " +lp.getProduit().getId() );
+				System.out.println("commande in ligne = " +lp.getProduit().getId() );
 				ps.executeUpdate();
 				ResultSet resultat = ps.getGeneratedKeys();
 				if (resultat.next()) {
@@ -43,12 +49,11 @@ public class LignePanierDao implements Dao<LignePanier> {
 	}
 	
 
-	@Override
-	public void remove(LignePanier lp) {
+	public void remove(LigneCommande lp) {
 		Connection c = MyConnection.getConnection();
 		if (c != null) {
 			try {
-				PreparedStatement ps = c.prepareStatement("DELETE FROM lignePanier  WHERE idLignePanier = ? ; ");
+				PreparedStatement ps = c.prepareStatement("DELETE FROM ligneCommande  WHERE idLigneCommande = ? ; ");
 				ps.setInt(1,lp.getId());
 				ps.executeUpdate();
 			} catch (SQLException e) {
@@ -58,14 +63,13 @@ public class LignePanierDao implements Dao<LignePanier> {
 		
 	}
 
-	@Override
-	public LignePanier update(LignePanier lp) {
+	public LigneCommande update(LigneCommande lp) {
 		Connection c = MyConnection.getConnection();
 		if (c != null) {
 			try {
-				PreparedStatement ps = c.prepareStatement("UPDATE lignePanier SET quantiteSelectionne=? WHERE idLignePanier=? ; ",
+				PreparedStatement ps = c.prepareStatement("UPDATE ligneCommande SET quantiteCommande=? WHERE idLigneCommande=? ; ",
 						PreparedStatement.RETURN_GENERATED_KEYS);
-				ps.setInt(1,lp.getQuantiteSelectionne());
+				ps.setInt(1,lp.getQuantiteCommande());
 				ps.setInt(2,lp.getId());
 			
 				int nbr = ps.executeUpdate();
@@ -79,8 +83,7 @@ public class LignePanierDao implements Dao<LignePanier> {
 		}
 		return null;
 	}
-	@Override
-	public LignePanier findById(int id) {
+	public LigneCommande findById(int id) {
 		
 		Connection c = MyConnection.getConnection();
 		
@@ -91,10 +94,11 @@ public class LignePanierDao implements Dao<LignePanier> {
 				;
 				ResultSet result = ps.executeQuery();
 				if (result.next()) {
-					Produit produit = produitDao.findById(result.getInt("produit"));	
-					int quantite = result.getInt("quantiteSelectionne");
-					LignePanier ligne = new LignePanier(quantite , produit);				
-					return ligne;
+					Produit produit = produitDao.findById(result.getInt("produit"));
+					Commande commande = commandeDao.findById(result.getInt("commande"));
+					int quantite = result.getInt("quantiteCommande");
+					//LigneCommande ligne = new LigneCommande(quantite , produit,commande);				
+				//return ligne;
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -103,34 +107,7 @@ public class LignePanierDao implements Dao<LignePanier> {
 		return null;
 	}
 
-//	@Override
-//	public LignePanier findById(int id) {
-//		Connection c = MyConnection.getConnection();
-//		if (c != null) {
-//			try {
-//				PreparedStatement ps = c.prepareStatement("SELECT * FROM lignepanier WHERE idLignePanier = ?;");
-//				ps.setInt(1, id);
-//				ResultSet rs = ps.executeQuery();
-//				if (rs.next()) {
-//					LignePanier lp = new LignePanier();
-//					lp.setId(rs.getInt("idLignePanier"));
-//					lp.setQuantiteSelectionne(rs.getInt("quantiteSelectionne"));
-//					lp.getProduit().setId(rs.getInt("idProduit"));	
-//					lp.getProduit().setDesignation(rs.getString("designation"));
-//					lp.getProduit().setPrixUnitaire(rs.getFloat("prixUnitaire"));
-//					lp.getProduit().setQuantiteStock(rs.getInt("quantiteStock"));				
-//					return lp; 
-//				}
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		return null;
-//	}
 
-
-
-	
 	public List<LignePanier> findAll() {
 		Connection c = MyConnection.getConnection();
 		ArrayList<LignePanier> lignePaniers = new ArrayList<LignePanier>();
@@ -154,5 +131,16 @@ public class LignePanierDao implements Dao<LignePanier> {
 		return null;
 	}
 
+
+	
+	
+	private List<Commande> cmds =  new ArrayList<>();
+	public Commande enregistrementCommande(Panier panier, Client client) {
+		Commande cmd = new Commande();
+		cmd.setClient(client);
+		cmd.setLignecommandes(panier.getLignes());
+		return null;
+		
+	}
 
 }
