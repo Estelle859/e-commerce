@@ -60,5 +60,5 @@ public class LigneCommandeService {
 		return nb;		
 		//return lignes.size();
 	}
-	
+
 }
