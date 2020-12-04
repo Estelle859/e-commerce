@@ -16,7 +16,9 @@
 		<c:import url="/WEB-INF/shared/nav.jsp"></c:import>
 	</nav>
 	<main>
-		<c:import url="/WEB-INF/panier/consulte.jsp"></c:import>
+<%-- 		<c:import url="/WEB-INF/panier/consulte.jsp"></c:import> --%>
+
+		<c:import url="/WEB-INF/produit/listProduit.jsp"></c:import><br>
 	</main>
 	<footer>
 				<c:import url="/WEB-INF/shared/footer.jsp"></c:import>

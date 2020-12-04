@@ -27,7 +27,7 @@ public class AddLignePanierServlet extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		int quantite = Integer.parseInt(request.getParameter("quantite"));
 		ProduitService produit = new ProduitService(); 		
-		LignePanier lignePanier = new LignePanier(id, quantite, produit.findByIdProduct(id));
+		LignePanier lignePanier = new LignePanier(quantite, produit.findByIdProduct(id));
 		lignePanierService.save(lignePanier);
 		doGet(request, response);
 	}

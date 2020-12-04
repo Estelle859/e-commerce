@@ -83,8 +83,6 @@ public class LigneCommandeDao implements Dao<LigneCommande> {
 					int idC = result.getInt(1);					
 					int quantiteCommande = result.getInt(2);
 				
-					LigneCommande lp = new LigneCommande(idC,quantiteCommande);
-					return lp;
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -104,8 +102,8 @@ public class LigneCommandeDao implements Dao<LigneCommande> {
 				while (result.next()) {
 					int idC = result.getInt(1);					
 					int quantiteCommande = result.getInt(2);				
-					LigneCommande lc = new LigneCommande(idC,quantiteCommande);
-					lcs.add(lc);
+//					LigneCommande lc = new LigneCommande(idC,quantiteCommande);
+//					lcs.add(lc);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();

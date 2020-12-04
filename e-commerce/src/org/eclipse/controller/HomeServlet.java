@@ -22,7 +22,7 @@ public class HomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         System.out.println("HomeController :: GET");         
-        request.setAttribute("produits", ps.findAll());
+        request.setAttribute("articles", ps.findAll());
     	getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);    
     }
 

@@ -29,6 +29,7 @@ public class PanierServlet extends HttpServlet {
 	ProduitService produitService= new ProduitService();
 	private LignePanierService lignePanierService = new LignePanierService();
 	private List<LignePanier> lignes = new ArrayList<>();
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		System.out.println("PANIER SERVLET:: GET ");		
@@ -51,15 +52,16 @@ public class PanierServlet extends HttpServlet {
 	        LignePanier ligne = new LignePanier(quantite,produit.findByIdProduct(id));
 			System.out.println("QUANTITY SELECTED " + ligne.getQuantiteSelectionne());	        
 			lignePanierService.save(ligne );		      
-			List<LignePanier> lignes = lignePanierService.findAll();	
-			System.out.println("LIGNES IN PANBIER" + lignes);   	
-			
-			request.setAttribute("lignes",lignes);	
+			lignes = lignePanierService.findAll();	
+			System.out.println("LIGNES IN PANIER" + lignes); 			
+			request.setAttribute("articles",lignes);	
 			vue="/WEB-INF/panier/panier.jsp";
 			break;			
 		case "/updatePanier":				
 			int idU = Integer.parseInt(request.getParameter("id"));
-			LignePanier lignepanier =  lignePanierService .findById(idU);   
+			System.out.println("ID ARTICLE" + idU);
+			LignePanier lignepanier =  lignePanierService.findById(idU); 
+			System.out.println("LIGNES IN PANIER to update" + lignepanier);
 			request.setAttribute("ligne", lignepanier);
 			vue="/WEB-INF/panier/editArticle.jsp";
 			break;
@@ -68,14 +70,14 @@ public class PanierServlet extends HttpServlet {
 		 	System.out.println("je suis sur supprimerGET");				
 			int idD = Integer.parseInt(request.getParameter("id"));
 			System.out.println("id ligne " + idD);
-			Panier pan =  panierService.findByIdLigne(idD);			
-			lignePanierService.remove(idD);
-			request.setAttribute("lignes",lignePanierService.findAll());
+			LignePanier pan =  lignePanierService.findById(idD);			
+			lignePanierService.remove(idD);		
+			request.setAttribute("articles",lignePanierService.findAll());
 			vue="/WEB-INF/panier/panier.jsp";
 			break;
 		case "/consultePanier":
 		 	System.out.println("je suis sur consulteGET");				
-			request.setAttribute("lignes",lignePanierService.findAll());
+			request.setAttribute("articles",produitService.findAll());
 			vue="/WEB-INF/client/client.jsp";
 			break;
 		default :
@@ -89,23 +91,31 @@ public class PanierServlet extends HttpServlet {
 //		request.setAttribute("total",total);	
 //		request.setAttribute("size",size);
 	
-		request.setAttribute("lignes", lignePanierService.findAll());
+	//	request.setAttribute("lignes", lignePanierService.findAll());
 		this.getServletContext().getRequestDispatcher(vue).forward(request, response);
 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("PANIER SERVLET:: POST ");
-		int id =  Integer.parseInt(request.getParameter("id"));	
-		int quantite =  Integer.parseInt(request.getParameter("quantiteSelectionne"));	
-        System.out.println("id article : "+ id);
+		//updating quantite de ligne panier selectionn
+		String action ="";
+		if(request.getParameter("action")!=null)
+			action = request.getParameter("action");
+		
+		System.out.println("action post panier ===>" + action);		
+		//int id =  Integer.parseInt(request.getParameter("id"));	
+		int quantite =  Integer.parseInt(request.getParameter("quantiteSelection"));
+		System.out.println("PANIER SERVLET:: POST ");
+      //  System.out.println("id article : "+ id);
         System.out.println("quantite article : "+ quantite);
         ProduitService produit = new ProduitService(); 
-        LignePanier ligne = new LignePanier(quantite , produit.findByIdProduct(id));        
-        lignePanierService.update(ligne);         
-        //this.getServletContext().getRequestDispatcher("/WEB-INF/panier/panier.jsp").forward(request, response);
+     //   LignePanier ligne = new LignePanier(quantite , produit.findByIdProduct(id));        
+      //  lignePanierService.update(ligne);  
+        request.setAttribute("articles", lignePanierService.findAll());
         doGet(request, response); 
-	
+   
+        	
 	}
 
 

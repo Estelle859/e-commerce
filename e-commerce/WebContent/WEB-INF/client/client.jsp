@@ -37,23 +37,15 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-<!--       <li><a href="panier"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li> -->
-<!--         <li class="nav-item px-3 text-uppercase mb-0 position-relative d-lg-flex"> -->
-<!--         <div id="cart" class="d-none"> -->
+	<li>
+       <a href="panier" action="" class="cart position-relative d-inline-flex" aria-label="View your shopping cart">
+         <i class="fas fa fa-shopping-cart fa-lg"></i>
+         <span class="cart-basket d-flex align-items-center justify-content-center">
+           ${size}
+         </span>
+       </a>
+	</li>
 
-<!--         </div> -->
-        <a href="panier" action="" class="cart position-relative d-inline-flex" aria-label="View your shopping cart">
-          <i class="fas fa fa-shopping-cart fa-lg"></i>
-          <span class="cart-basket d-flex align-items-center justify-content-center">
-            ${ size }
-          </span>
-        </a>
-
-<!--       <button id="sidenav-open-btn" class="menu-hamburger position-absolute pointer p-0"> -->
-<!--         <span class="icon-bar"></span> -->
-<!--         <span class="icon-bar"></span> -->
-<!--         <span class="icon-bar"></span> -->
-<!--       </button> -->
     </ul>
   </div>
 	</nav>
@@ -63,6 +55,7 @@
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
+						<th>Article</th>
 						<th>Designation</th>
 						<th>PrixUnitaire</th>
 						<th>Quanté en stock</th>
@@ -70,8 +63,10 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${ produits }" var="element">
+					<c:forEach items="${articles }" var="element">
 						<tr>
+						<td><img src="${element.urlImage}" width="100"
+							height="100" /></td>
 							<td>${element.designation}</td>
 							<td>${element.prixUnitaire}</td>
 							<td>${element.quantiteStock}</td>						

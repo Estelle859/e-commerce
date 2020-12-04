@@ -11,7 +11,7 @@
 					</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${ produits }" var="element">
+			<c:forEach items="${ articles }" var="element">
 				<tr>
 					<td>${element.designation}</td>
 					<td>${element.prixUnitaire}</td>

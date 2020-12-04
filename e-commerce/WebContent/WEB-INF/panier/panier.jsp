@@ -80,7 +80,7 @@
 
 	<!-- 			</table> -->
 	<%-- <%-- 		</c:if> --%>
-	
+
 	<!-- </div> -->
 	<div class="container">
 
@@ -103,14 +103,17 @@
 			</thead>
 			<tbody>
 				<c:set var="total" value="${0}" />
-				<c:forEach items="${lignes}" var="article">				
+				<c:forEach items="${articles}" var="article">
 					<tr>
 						<td>${article.id}</td>
 						<td><img src="${article.produit.urlImage}" width="100"
 							height="100" /></td>
 						<td>${article.produit.designation}</td>
 						<td>${article.produit.prixUnitaire}€</td>
-						<td><input type="number" value=${article.quantiteSelectionne} name="quantite" min="0" max="10" step="1" /></td>
+						<td><input type="number"
+							value=${article.quantiteSelectionne
+							} name="quantite"
+							min="0" max="10" step="1" /></td>
 
 						<td><c:set var="montant"
 								value="${article.quantiteSelectionne*article.produit.prixUnitaire}" />
@@ -119,30 +122,39 @@
 								value="${ total + montant}" /> <c:set var="nbArticle"
 								value="${nbArticle + article.quantiteSelectionne}" /></td>
 
-						<td><a href="deletePanier?id=${article.id}&action=deletePanier"> <i
-								class="fas fa-trash-alt"></i></a><td>
-						<td><a	href="updatePanier?id=${article.id}&action=updatePanier"> <i
+						<td><a
+							href="deletePanier?id=${article.id}&action=deletePanier"> <i
+								class="fas fa-trash-alt"></i></a>
+						<td>
+						<td><a
+							href="updatePanier?id=${article.id}&action=updatePanier"> <i
 								class="fas fa-edit"></i></td>
-						<td><a href="consultePanier?action=consultePanier"> <i
-								class="fas fa-redo"></i></td>
-
+						<!-- 						<td><a href="consultePanier?action=consultePanier"> Continue</i></td> -->
 
 					</tr>
-				</c:forEach>			
+				</c:forEach>
 			</tbody>
 			<tfoot>
-			<tr>
+				<tr>
 					<th></th>
 					<th></th>
-					<th><td>Nbr articles:${size} </td></th>
-					<th><td>Total: ${total}€</td> </th>
-
+					<th>
+					<td>Nbr articles:${size}</td>
+					</th>
+					<th>
+					<td>Total: ${total} €</td>
+					</th>
+					<th>
+					<td><a href="consultePanier?action=consultePanier"
+						class="button">CONTINUE SHOPPING</a></td>
+					</th>
+					<td><a href="commande?action=comande"
+						class="button">PASSER COMMANDE</a></td>
+					</th>
 				</tr>
 			</tfoot>
 		</table>
-
-		</div>
-
+	</div>
 
 </body>
 </html>

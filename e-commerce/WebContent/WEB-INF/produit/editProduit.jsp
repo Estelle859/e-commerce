@@ -17,16 +17,9 @@
 					<input type="hidden" name="action" value="update" /> 				
 					<input type="hidden" id="id" name="id" value="${produit.id}" /> 
 					<label 	for="designation">Designation : </label> 
-					<input type="text" name="designation" 	value="${produit.designation}" id="designation" />
-<!-- 				    <label for="categorie">Category :</label>  -->
-<!-- 					<select name="categorie" id="categorie"> -->
-<%-- 						<c:forEach items="${requestScope.categories}" var="categorie"> --%>
-<%-- 							<option value="${categorie.idCate}">${categorie.nomCategorie}</option> --%>
-<%-- 						</c:forEach> --%>
-<!-- 					</select> 						 -->
+					<input type="text" name="designation" 	value="${produit.designation}" id="designation" />				
 					<label for="prixUnitaire">Prix Unitaire : </label>					
-					<input type="text" name="prixUnitaire" value="${produit.prixUnitaire}" id="prixUnitaire" /> 
-					
+					<input type="text" name="prixUnitaire" value="${produit.prixUnitaire}" id="prixUnitaire" /> 					
 					<label for="quantite">Quantite : </label> 
 					<input type="text" name="quantite" value="${produit.quantiteStock}" id="quantite" />		
 					<label for="urlImage">Url Image :</label>
@@ -35,8 +28,7 @@
 					<label for="selection">Selectionne : </label> 
 					<input type="text" name="selectionne" value="${produit.selectionne}" id="selectionne" />		
 					<input type="submit" name="submit" value="Modifier" id="submit" />
-					<a	href="produit">Cancel</a>					
-					
+					<a	href="produit">Cancel</a>						
 			</fieldset>
 		</form>
 	</div>

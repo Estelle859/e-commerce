@@ -4,56 +4,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LignePanier {
-	
+
 	private int id;
-	private int quantiteSelectionne;	
+	private int quantiteSelectionne;
 	private Produit produit;
 	private Panier panier;
+	
+	public LignePanier() {		
 
-	private List<Produit> produits = new ArrayList<>();
-	
-	public LignePanier() {
-	
 	}
 
-	public LignePanier(int id) {
-	
+	public LignePanier(int id) {	
+
 		this.id = id;
 	}
-
-
-
-	public LignePanier(int id, int quantiteSelectionne) {
-		
-		this.id = id;
-		this.quantiteSelectionne = quantiteSelectionne;
-
-	}
 	
-
-	public LignePanier(int quantiteSelectionne, Produit produit) {
-	
+	public LignePanier(int quantiteSelectionne, Produit produit) {	
 		this.quantiteSelectionne = quantiteSelectionne;
 		this.produit = produit;
 	}
 
-	public LignePanier(int id, int quantiteSelectionne, List<Produit> produits) {
-	
+	public LignePanier(int id, int quantiteSelectionne, Produit produit) {	
 		this.id = id;
 		this.quantiteSelectionne = quantiteSelectionne;
-		this.produits = produits;
+		this.produit = produit;
 	}
-	
-	
-	public LignePanier(int quantiteSelectionne, Produit produit, Panier panier) {
 
+	public LignePanier(int quantiteSelectionne, Produit produit, Panier panier) {	
 		this.quantiteSelectionne = quantiteSelectionne;
 		this.produit = produit;
 		this.panier = panier;
 	}
 
 	public LignePanier(int id, int quantiteSelectionne, Produit produit, Panier panier) {
-
 		this.id = id;
 		this.quantiteSelectionne = quantiteSelectionne;
 		this.produit = produit;
@@ -75,7 +58,6 @@ public class LignePanier {
 	public void setQuantiteSelectionne(int quantiteSelectionne) {
 		this.quantiteSelectionne = quantiteSelectionne;
 	}
-	
 
 	public Produit getProduit() {
 		return produit;
@@ -95,9 +77,11 @@ public class LignePanier {
 
 	@Override
 	public String toString() {
-		return "LignePanier [id=" + id + ", quantiteSelectionne=" + quantiteSelectionne + ", produit=" + produit + "]";
+		return "LignePanier [id=" + id + ", quantiteSelectionne=" + quantiteSelectionne + ", produit=" + produit
+				+ ", panier=" + panier + "]";
 	}
 
-	
 
+
+	
 }

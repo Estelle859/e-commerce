@@ -11,6 +11,7 @@ import java.util.List;
 import org.eclipse.config.MyConnection;
 import org.eclipse.dao.LignePanierDao;
 import org.eclipse.model.LignePanier;
+import org.eclipse.model.Produit;
 
 
 public class LignePanierService {
@@ -23,7 +24,18 @@ public class LignePanierService {
 	}
 
 	public LignePanier save(LignePanier ligne) {
-		return lignePanierDao.save(ligne);
+
+		Produit produit = ligne.getProduit() ;
+		System.out.println("product id of ligne panier " + produit);
+		if(lignePanierDao.findByProduit(produit)==null) {
+			System.out.println("save**"+ligne);		
+			return lignePanierDao.save(ligne);
+		}else {
+			System.out.println("update**"+ligne);
+			
+			return lignePanierDao.updateAddQuantite(ligne);
+		}
+		
 	}
 
 	public List<LignePanier> findAll() {
@@ -31,15 +43,18 @@ public class LignePanierService {
 	}
 
 	public void remove(int id) {
+		System.out.println(lignePanierDao.findById(id));
 		lignePanierDao.remove(lignePanierDao.findById(id));
 	}
 	public LignePanier findById(int id) {
 		return lignePanierDao.findById(id);
 	}
 	public LignePanier update(LignePanier lp) {
+		System.out.println("update article " + lp.getId());
 		return lignePanierDao.update(lp);
 		
 	}
+	
 	public float getTotal() {
 		float total = 0;
 		Collection<LignePanier> lignes = lignePanierDao.findAll();

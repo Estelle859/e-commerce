@@ -38,7 +38,7 @@ public class VendeurServlet extends HttpServlet {
 //		request.setAttribute("action", action);
 //		request.setAttribute("operation", operation);
 		produits = produitService.findAll();
-		request.setAttribute("produits",produits);
+		request.setAttribute("articles",produits);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/vendeur/vendeur.jsp").forward(request, response);
 		
 	}

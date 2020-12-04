@@ -79,14 +79,14 @@
 			<div class="form-group">
 			<label  for="prixUnitaire">PrixUnitaire:</label>
 			
-				<input type="text" name="prixUnitaire" class="form-control" id="prixUnitaire"
+				<input type="number" name="prixUnitaire" class="form-control" id="prixUnitaire"
 					placeholder="Enter prixUnitaire">
 			</div>
 		 
 			<div class="form-group">
 			<label  for="quantiteStock">Quantite:</label>
 			
-				<input type="text" name="quantiteStock" class="form-control" id="quantiteStock"
+				<input type="number" name="quantiteStock" class="form-control" id="quantiteStock"
 					placeholder="Enter quantite">
 			</div>
 			<div class="form-group">

@@ -39,19 +39,18 @@ public class ArticleServlet extends HttpServlet {
 			int id =  Integer.parseInt(request.getParameter("id"));	
 	        int quantite =  Integer.parseInt(request.getParameter("quantite"));	
 	        System.out.println("id article : "+ id);
-	        System.out.println("quantite article : "+ quantite);
+//	        System.out.println("quantite article : "+ quantite);
 	        ProduitService produit = new ProduitService();     
 	        LignePanier ligne = new LignePanier(quantite,produit.findByIdProduct(id));			
-		    panier.save(ligne );			      
-			lignes = panier.findAll();	
-			
+		    panier.save(ligne );		    
+			lignes = panier.findAll();				
 			System.out.println("LIGNES IN CART"+lignes);
-	    	//Float total = panier.getTotal();
-	    	//int size = panier.getSize();
-			//	request.setAttribute("total",total);	
-			//	request.setAttribute("size",size);	
+//	    	//Float total = panier.getTotal();
+//	    	//int size = panier.getSize();
+//			//	request.setAttribute("total",total);	
+//			//	request.setAttribute("size",size);	
 			request.setAttribute("id",id);	
-			request.setAttribute("lignes",lignes);				
+			request.setAttribute("articles",lignes);				
 			getServletContext().getRequestDispatcher("/WEB-INF/panier/panier.jsp").forward(request, response);
 	}
 

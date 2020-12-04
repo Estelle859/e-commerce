@@ -30,7 +30,7 @@
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="#">Home</a></li>
-					<li><a href="produit">Products</a></li>
+					<li><a href="connexion">Products</a></li>
 					<li><a href="connexion">Services</a></li>
 					<li><a href="contact">Contact</a></li>
 					<li><a href="deconnexion">Logout</a></li>
@@ -58,7 +58,7 @@
 		<article class=container>
 			<div
 				style="display: flex; flex-wrap: wrap; justify-content: space-between; align-content: space-between">
-				<c:forEach items="${ produits }" var="produit">​
+				<c:forEach items="${ articles }" var="produit">​
 					<figure style="width: 46%; height: 45vh;">
 						<a href="article?id=${ produit.id }"> <img
 							src="${ produit.urlImage }" alt="${ produit.designation }"

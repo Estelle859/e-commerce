@@ -4,23 +4,30 @@ public class LigneCommande {
 	private int id;
 	private int quantiteCommande;	
 	private Produit produit;
-	private Commande commande;
 	private Float prix;
 	
-	public LigneCommande(int quantiteCommande, Produit produit, Commande commande, Float prix) {
-		super();
-		this.quantiteCommande = quantiteCommande;
-		this.produit = produit;
-		this.commande = commande;
-		this.prix = prix;
+	public LigneCommande() {
+	
 	}
 
-	public LigneCommande(int id, int quantiteCommande, Produit produit, Commande commande, Float prix) {
-		super();
+	public LigneCommande(int id) {
+	
+		this.id = id;
+	}
+
+	public LigneCommande(int quantiteCommande, Produit produit, Float prix) {
+	
+		this.quantiteCommande = quantiteCommande;
+		this.produit = produit;
+		this.prix = prix;
+	}
+	
+
+	public LigneCommande(int id, int quantiteCommande, Produit produit, Float prix) {
+
 		this.id = id;
 		this.quantiteCommande = quantiteCommande;
 		this.produit = produit;
-		this.commande = commande;
 		this.prix = prix;
 	}
 
@@ -48,14 +55,6 @@ public class LigneCommande {
 		this.produit = produit;
 	}
 
-	public Commande getCommande() {
-		return commande;
-	}
-
-	public void setCommande(Commande commande) {
-		this.commande = commande;
-	}
-
 	public Float getPrix() {
 		return prix;
 	}
@@ -66,9 +65,10 @@ public class LigneCommande {
 
 	@Override
 	public String toString() {
-		return "LigneCommande [id=" + id + ", quantiteCommande=" + quantiteCommande + ", produit=" + produit
-				+ ", commande=" + commande + ", prix=" + prix + "]";
+		return "LigneCommande [id=" + id + ", quantiteCommande=" + quantiteCommande + ", produit=" + produit + ", prix="
+				+ prix + "]";
 	}
+
 	
 	
 }
